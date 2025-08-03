@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - Travesting Money</title>
+    <meta name="description" content="Latest market insights, trading analysis, and investment strategies from Travesting Money - SEBI Registered Research Analyst">
+    <meta name="keywords" content="market insights, trading analysis, investment strategies, stock market blogs, Travesting Money">
+    <meta name="author" content="Travesting Money">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Blogs - Travesting Money">
+    <meta property="og:description" content="Latest market insights, trading analysis, and investment strategies from SEBI Registered Research Analyst">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://travestingmoney.com/blogs.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/blogs.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="./images/Logo BLACK H.png" alt="Travesting Money Logo" class="logo-image">
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                <li><a href="index.html#courses" class="nav-link">Research</a></li>
+                <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="index.html#blogs" class="nav-link active">Blogs</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#vision-mission" class="nav-link">Vision & Mission</a></li>
+                <li><a href="index.html#mentorship" class="nav-link">Mentorship</a></li>
+                <li><a href="index.html#resources" class="nav-link">Resources</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="#login" class="nav-btn">Login</a></li>
+            </ul>
+            
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <div class="blog-header-content">
+                <h1>Market Insights & Analysis</h1>
+                <p>Stay updated with our latest market analysis, trading insights, and investment strategies from our SEBI Registered Research Analyst team.</p>
+                <div class="blog-search">
+                    <input type="text" id="blog-search" placeholder="Search blogs...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Blogs Section -->
+    <section class="all-blogs">
+        <div class="container">
+            <div class="blogs-filters">
+                <div class="filter-group">
+                    <label for="sort-blogs">Sort by:</label>
+                    <select id="sort-blogs">
+                        <option value="latest">Latest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-blogs">Filter:</label>
+                    <select id="filter-blogs">
+                        <option value="all">All Blogs</option>
+                        <option value="market-analysis">Market Analysis</option>
+                        <option value="trading-strategies">Trading Strategies</option>
+                        <option value="investment-insights">Investment Insights</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="blogs-grid" id="all-blogs-grid">
+                <!-- All blog cards will be dynamically loaded here -->
+                <div class="blog-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading blogs...</p>
+                </div>
+            </div>
+            
+            <div class="blogs-pagination" id="blogs-pagination">
+                <!-- Pagination will be added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Travesting Money</span>
+                    </div>
+                    <p>
+                        SEBI Registered Research Analyst providing equity research, stock recommendations, 
+                        and market education. SEBI Registration No.: INH000014836
+                    </p>
+                    <div class="sebi-compliance">
+                        <div class="compliance-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SEBI Registered Research Analyst</span>
+                        </div>
+                        <div class="compliance-badge">
+                            <i class="fas fa-certificate"></i>
+                            <span>NSE Certified Market Professional</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#courses">Stock Research Reports</a></li>
+                        <li><a href="index.html#courses">Model Portfolios</a></li>
+                        <li><a href="index.html#courses">Market Education</a></li>
+                        <li><a href="index.html#mentorship">Mentorship Programs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="index.html#resources">Market Analysis</a></li>
+                        <li><a href="index.html#resources">Stock Screener</a></li>
+                        <li><a href="index.html#resources">Research Reports</a></li>
+                        <li><a href="index.html#resources">Educational Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="compliance.html">Compliance & Disclosures</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-disclaimer">
+                    <p><strong>Disclaimer:</strong> All information provided on this website is for educational and informational purposes only. Travesting Money does not guarantee returns. Stock market investments are subject to market risk. Travesting Money is a SEBI Registered Research Analyst (INH000014836). We do not offer personalized financial planning, PMS, or execution services. Please consult a SEBI Registered Investment Advisor (RIA) for personalized advice.</p>
+                </div>
+                <p>&copy; 2024 Travesting Money. All rights reserved. | SEBI Registered Research Analyst - INH000014836</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919175815888" class="whatsapp-button" target="_blank" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Notification Container -->
+    <div class="notification-container"></div>
+
+    <!-- Blog Modal -->
+    <div class="blog-modal" id="blog-modal">
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <h2 id="modal-title">Blog Title</h2>
+                <button class="modal-close" id="modal-close" aria-label="Close blog modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="blog-modal-body" id="modal-content">
+                <!-- Blog content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/blogs.js"></script>
+</body>
+</html> 

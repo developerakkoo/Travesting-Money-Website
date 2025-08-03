@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travesting Money - SEBI Registered Research Analyst</title>
+    <meta name="description" content="SEBI Registered Research Analyst providing equity research, stock recommendations, and market education. SEBI Registration No.: INH000014836">
+    <meta name="keywords" content="SEBI registered research analyst, stock market research, equity analysis, trading education, stock recommendations, Travesting Money">
+    <meta name="author" content="Travesting Money">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Travesting Money - SEBI Registered Research Analyst">
+    <meta property="og:description" content="SEBI Registered Research Analyst providing equity research, stock recommendations, and market education. SEBI Registration No.: INH000014836">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://travestingmoney.com">
+    <meta property="og:image" content="https://travestingmoney.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Travesting Money - SEBI Registered Research Analyst">
+    <meta name="twitter:description" content="SEBI Registered Research Analyst providing equity research, stock recommendations, and market education.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <img src="./images/Logo BLACK H.png" alt="Travesting Money Logo" class="logo-image">
+                    <!-- <span>Travesting Money</span> -->
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#courses" class="nav-link">Research</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                <li><a href="#blogs" class="nav-link">Blogs</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#vision-mission" class="nav-link">Vision & Mission</a></li>
+                <li><a href="#mentorship" class="nav-link">Mentorship</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#login" class="nav-btn">Login</a></li>
+            </ul>
+            
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="data-streams"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="professional-overlay"></div>
+        
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-certificate"></i>
+                    <span>SEBI Registered Research Analyst</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Independent <span class="gradient-text">Equity Research</span><br>
+                    & Market Education
+                </h1>
+                
+                <p class="hero-description">
+                    Travesting Money is a SEBI Registered Research Analyst platform, we are committed to bridging the gap 
+                    between institutional-quality analysis and individual decision-making.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="#courses" class="btn btn-primary">
+                        <i class="fas fa-chart-bar"></i>
+                        View Research
+                    </a>
+                    <a href="#demo" class="btn btn-outline">
+                        <i class="fas fa-eye"></i>
+                        Learn More
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">SEBI</div>
+                        <div class="stat-label">Registered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">NSE</div>
+                        <div class="stat-label">Certified</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="trading-dashboard">
+                    <div class="dashboard-header">
+                        <div class="market-status">
+                            <div class="status-indicator live"></div>
+                            <span>Market Open</span>
+                        </div>
+                        <div class="time-display">
+                            <i class="fas fa-clock"></i>
+                            <span id="market-time">09:30 AM IST</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-display">
+                        <div class="retro-tv-screen">
+                            <div class="tv-static"></div>
+                            <div class="stock-display">
+                                <div class="stock-data">
+                                    <div class="stock-name" id="stock-name">RELIANCE</div>
+                                    <div class="stock-price" id="stock-price">₹2,450.75</div>
+                                    <div class="stock-change" id="stock-change">+45.50 (+1.89%)</div>
+                                </div>
+                                <div class="trade-result" id="trade-result" style="display: none;">
+                                    <div class="result-message" id="result-message"></div>
+                                    <div class="result-profit" id="result-profit"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trading-panel">
+                        <div class="stock-info">
+                            <div class="stock-symbol" id="panel-symbol">RELIANCE</div>
+                            <div class="stock-price" id="panel-price">₹2,450.75</div>
+                            <div class="stock-change positive" id="panel-change">+45.50 (+1.89%)</div>
+                        </div>
+                        <div class="trade-buttons">
+                            <button class="trade-btn buy" id="buy-btn">BUY</button>
+                            <button class="trade-btn sell" id="sell-btn">SELL</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="market-indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">NIFTY 50</span>
+                        <span class="indicator-value positive">22,450.75</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">BANK NIFTY</span>
+                        <span class="indicator-value positive">48,234.56</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">SENSEX</span>
+                        <span class="indicator-value positive">73,567.12</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <div class="scroll-indicator">
+            <div class="scroll-text">Explore Our Research</div>
+            <div class="scroll-arrow">
+                <!-- <i class="fas fa-chevron-down"></i> 
+            </div>
+        </div> -->
+    </section>
+
+    <!-- Research Section -->
+     <section id="courses" class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Equity Research & Analysis</h2>
+                <p class="section-subtitle">
+                    Data-driven equity research and stock recommendations based on fundamental analysis, 
+                    technical frameworks, and structured risk assessment.
+                </p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stock Research Reports">
+                        <div class="course-badge">Research</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Stock Research Reports</h3>
+                        <p>Comprehensive equity research reports with fundamental analysis, technical insights, and risk assessment.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> Weekly Reports</span>
+                            <span><i class="fas fa-users"></i> 500+ Reports</span>
+                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                        </div>
+                        <div class="course-price">
+                            <div class="price">Premium</div>
+                            <a href="#" class="btn btn-primary">View Reports</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card featured">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Model Portfolios">
+                        <div class="course-badge">Portfolio</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Model Portfolios</h3>
+                        <p>Non-discretionary, research-based stock model portfolios under SEBI RA guidelines for educational purposes.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> Monthly Updates</span>
+                            <span><i class="fas fa-users"></i> 200+ Stocks</span>
+                            <span><i class="fas fa-star"></i> 4.8/5</span>
+                        </div>
+                        <div class="course-price">
+                            <div class="price">Premium</div>
+                            <a href="#" class="btn btn-primary">View Portfolios</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Education">
+                        <div class="course-badge">Education</div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Market Education</h3>
+                        <p>Structured mentorship programs and educational content to build strong foundation in fundamental and technical analysis.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> Live Sessions</span>
+                            <span><i class="fas fa-users"></i> 1000+ Students</span>
+                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                        </div>
+                        <div class="course-price">
+                            <div class="price">Premium</div>
+                            <a href="#" class="btn btn-primary">Join Program</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Success Stories</h2>
+                <p class="section-subtitle">
+                    Real stories from traders and investors who transformed their financial journey with Travesting Money
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Vinay Sagare</h4>
+                            <p class="testimonial-designation">Senior Software Engineer</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-caption">
+                        "Finally trading profitably after years of struggle with Travesting Money's Mentorship & Swing Subscription Plan"
+                    </div>
+                    <div class="testimonial-review">
+                        <p>"I had been trading for years without seeing consistent profits — hopping between tips and strategies. Joining Travesting Money's June batch of the Market Mastery Program was the turning point. Their structured mentorship, practical learning, and real-time examples helped me finally understand profitable trading. I also subscribed to their Swing Trading Plan — the entry, exit, stop loss, and risk-reward guidance is precise, and most targets hit if followed properly. Now, I'm finally profitable and trading with clarity and conviction. A complete package for anyone serious about trading success."</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card featured">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Akash Goyal</h4>
+                            <p class="testimonial-designation">Founder & CEO - Medlius Pharma Pvt Ltd</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-caption">
+                        "Rare to find this level of research outside big institutions. Travesting Money stands out for all the right reasons."
+                    </div>
+                    <div class="testimonial-review">
+                        <p>"Being from a completely different industry, I always wanted a research-oriented and ethical stock market advisory — and Travesting Money exceeded my expectations. The quality of research reports, diversification approach, and clarity on entry-exit points show the professionalism they carry. It's rare to see such data-driven research outside institutional setups."</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Yash Pawar</h4>
+                            <p class="testimonial-designation">Real Estate Developer</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-caption">
+                        "Well-structured Entries, Exits, SL and consistent profits with discipline"
+                    </div>
+                    <div class="testimonial-review">
+                        <p>"I subscribed to the short to mid-term swing trading plan, and I must say — their entry, exit, and stop loss levels are extremely well-structured. With discipline and following their guidance, I started seeing profits consistently. The setup is professional and designed for serious traders."</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Dipak Chuhan</h4>
+                            <p class="testimonial-designation">Director at Trytime Stores Pvt. Ltd.</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-caption">
+                        "From zero to confident trader and investor, all credit to Omkar Sir's unmatched knowledge and mentorship."
+                    </div>
+                    <div class="testimonial-review">
+                        <p>"Joining the mentorship by Omkar Sir helped me truly understand the mechanics behind stock selection. The in-house frameworks, sector rotation strategies, and economic analysis concepts they teach are rarely found in public platforms. It's a serious edge for anyone who wants to take investing seriously."</p>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-info">
+                            <h4 class="testimonial-name">Prajakta Shinde</h4>
+                            <p class="testimonial-designation">Founder and Principal Architect PS Design Studios</p>
+                        </div>
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-caption">
+                        "I used to believe stock market is not for women — I was so wrong!"
+                    </div>
+                    <div class="testimonial-review">
+                        <p>"What I admire most is the data-driven approach. Each suggestion is backed by clear fundamentals, sector analysis, and future growth potential. As a woman investor, I now feel far more empowered with my investments."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blogs" class="blogs">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Latest Market Insights</h2>
+                <p class="section-subtitle">
+                    Stay updated with our latest market analysis, trading insights, and investment strategies
+                </p>
+            </div>
+            
+            <div class="blogs-grid" id="blogs-grid">
+                <!-- Blog cards will be dynamically loaded here -->
+                <div class="blog-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading latest blogs...</p>
+                </div>
+            </div>
+            
+            <div class="blogs-cta">
+                <a href="blogs.html" class="btn btn-primary">
+                    <i class="fas fa-newspaper"></i>
+                    View All Blogs
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>About Travesting Money</h3>
+                    <p>
+                        Travesting Money was founded with a clear vision — to deliver ethical, research-backed 
+                        stock market insights to India's growing community of retail investors and traders. 
+                        As a SEBI Registered Research Analyst platform, we are committed to bridging the gap 
+                        between institutional-quality analysis and individual decision-making.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>SEBI Registered</h4>
+                                <p>SEBI Registration No.: INH000014836 - Valid across India for offering equity research and market education.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-bar"></i>
+                            <div>
+                                <h4>Data-Driven Research</h4>
+                                <p>Every stock recommendation and model portfolio is grounded in rigorous fundamental research and technical frameworks.</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>Education-First</h4>
+                                <p>We focus on clarity, conviction, and long-term value creation through structured mentorship programs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">SEBI</div>
+                        <div class="stat-label">Registered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">NSE</div>
+                        <div class="stat-label">Certified</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section id="vision-mission" class="vision-mission">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Vision & Mission</h2>
+                <p class="section-subtitle">
+                    Driving the future of independent equity research and market education in India
+                </p>
+            </div>
+            
+            <div class="vision-mission-grid">
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>
+                        To establish Travesting Money as a leading authority in independent equity research 
+                        and market education by delivering actionable, data-backed insights rooted in fundamental, 
+                        technical, and quantitative analysis. Our long-term vision is to elevate the standard of 
+                        retail investing in India by promoting research literacy, risk-aware decision-making, 
+                        and regulatory transparency — empowering every investor to navigate markets with confidence, 
+                        discipline, and strategic clarity.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>
+                        To empower retail investors and traders through transparent, SEBI-compliant equity research, 
+                        curated stock recommendations, and structured mentorship programs. We aim to bridge the gap 
+                        between professional-grade market analysis and individual decision-making by delivering 
+                        data-driven insights, risk-managed strategies, and a strong foundation in fundamental 
+                        and technical education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="mentorship">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Founder</h2>
+                <p class="section-subtitle">
+                    Learn from Omkar Sunil Kadam, Founder & Chief Research Analyst at Travesting Money, 
+                    a SEBI Registered Research Analyst with over 8 years of experience.
+                </p>
+            </div>
+            
+            <div class="mentorship-grid">
+                <div class="mentor-card featured">
+                    <div class="mentor-image">
+                        <img src="images/founder-omkar-kadam.jpeg" alt="Omkar Sunil Kadam - Founder & Chief Research Analyst">
+                    </div>
+                    <div class="mentor-content">
+                        <h3>Omkar Sunil Kadam</h3>
+                        <p class="mentor-title">Founder & Chief Research Analyst</p>
+                        <p class="mentor-bio">SEBI Registered Research Analyst with MBA in Finance and over 8 years of experience in the Indian stock market. NSE Certified Market Professional with NISM & NCFM certifications.</p>
+                        <div class="mentor-stats">
+                            <span><i class="fas fa-certificate"></i> SEBI Registered</span>
+                            <span><i class="fas fa-graduation-cap"></i> MBA Finance</span>
+                        </div>
+                        <div class="mentor-achievements">
+                            <div class="achievement">✅ SEBI Registered Research Analyst (INH000014836)</div>
+                            <div class="achievement">✅ NSE Certified Market Professional</div>
+                            <div class="achievement">✅ NISM & NCFM Certified</div>
+                        </div>
+                        <a href="#" class="btn btn-outline">Book Consultation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+     <section id="resources" class="resources">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Research Resources</h2>
+                <p class="section-subtitle">
+                    Access our comprehensive library of research tools, market analysis, 
+                    and educational content to support your investment decisions.
+                </p>
+            </div>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Market Analysis</h3>
+                    <p>Daily market insights, technical analysis, and trading opportunities from our expert research team.</p>
+                    <a href="#" class="resource-link">Read Analysis <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Stock Screener</h3>
+                    <p>Advanced stock screening tools based on fundamental and technical parameters for informed decision-making.</p>
+                    <a href="#" class="resource-link">Access Screener <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Research Reports</h3>
+                    <p>Comprehensive equity research reports with detailed fundamental and technical analysis.</p>
+                    <a href="#" class="resource-link">View Reports <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Educational Videos</h3>
+                    <p>Live and recorded educational sessions on market analysis, trading strategies, and investment principles.</p>
+                    <a href="#" class="resource-link">Watch Videos <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Ready to Start Your Investment Journey?</h2>
+                    <p>
+                        Join thousands of investors who have transformed their financial future with 
+                        Travesting Money. Contact us today to learn more about our research and 
+                        mentorship programs.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>+91-9175815888 / 9175615888</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>support@travestingmoney.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <h4>SEBI Registration</h4>
+                                <p>INH000014836</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select required aria-label="Select a service">
+                            <option value="">Select Service</option>
+                            <option value="research">Stock Research Reports</option>
+                            <option value="portfolio">Model Portfolios</option>
+                            <option value="education">Market Education</option>
+                            <option value="mentorship">Mentorship Program</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Travesting Money</span>
+                    </div>
+                    <p>
+                        SEBI Registered Research Analyst providing equity research, stock recommendations, 
+                        and market education. SEBI Registration No.: INH000014836
+                    </p>
+                    <div class="sebi-compliance">
+                        <div class="compliance-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SEBI Registered Research Analyst</span>
+                        </div>
+                        <div class="compliance-badge">
+                            <i class="fas fa-certificate"></i>
+                            <span>NSE Certified Market Professional</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Stock Research Reports</a></li>
+                        <li><a href="#">Model Portfolios</a></li>
+                        <li><a href="#">Market Education</a></li>
+                        <li><a href="#">Mentorship Programs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Stock Screener</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Educational Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="compliance.html">Compliance & Disclosures</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-disclaimer">
+                    <p><strong>Disclaimer:</strong> All information provided on this website is for educational and informational purposes only. Travesting Money does not guarantee returns. Stock market investments are subject to market risk. Travesting Money is a SEBI Registered Research Analyst (INH000014836). We do not offer personalized financial planning, PMS, or execution services. Please consult a SEBI Registered Investment Advisor (RIA) for personalized advice.</p>
+                </div>
+                <p>&copy; 2024 Travesting Money. All rights reserved. | SEBI Registered Research Analyst - INH000014836</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919175815888" class="whatsapp-button" target="_blank" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Notification Container -->
+    <div class="notification-container"></div>
+
+    <!-- Custom JavaScript -->
+    <script src="scripts/main.js"></script>
+</body>
+</html> 
