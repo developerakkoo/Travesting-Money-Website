@@ -1003,6 +1003,17 @@ section {
     box-shadow: var(--shadow-md);
 }
 
+.btn-secondary {
+    background: var(--gradient-secondary);
+    color: #fff;
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+}
+
 /* Enhanced Section Headers */
 .section-header {
     text-align: center;

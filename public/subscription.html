@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Advisory Subscription - Travesting Money</title>
+    <meta name="description" content="Subscribe to our premium stock advisory services. Get expert market analysis, trading recommendations, and personalized investment guidance.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/subscription.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="./images/Logo BLACK H.png" alt="Travesting Money Logo" class="logo-image">
+                    <!-- <span>Travesting Money</span> -->
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">Home</a></li>
+                <!-- <li><a href="index.html#courses" class="nav-link">Research</a></li> -->
+                <!-- <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li> -->
+                <li><a href="index.html#blogs" class="nav-link">Blogs</a></li>
+                <li><a href="subscription.html" class="nav-link active">Subscription</a></li>
+                <!-- <li><a href="index.html#about" class="nav-link">About</a></li> -->
+                <!-- <li><a href="index.html#vision-mission" class="nav-link">Vision & Mission</a></li> -->
+                <li><a href="index.html#mentorship" class="nav-link">Mentorship</a></li>
+                <li><a href="index.html#resources" class="nav-link">Resources</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <!-- <li><a href="#login" class="nav-btn">Login</a></li> -->
+            </ul>
+            
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="subscription-hero">
+        <!-- Background Elements -->
+        <div class="hero-background">
+            <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            <div class="data-streams"></div>
+            <div class="professional-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>SEBI Registered Premium Advisory</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Unlock <span class="gradient-text">Premium Stock Advisory</span><br>
+                    & Market Intelligence
+                </h1>
+                
+                <p class="hero-description">
+                    Get exclusive access to expert market analysis, real-time trading recommendations, 
+                    and personalized investment strategies. Join thousands of successful traders who trust our insights.
+                </p>
+                
+                <div class="hero-cta">
+                    <a href="#pricing" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        Start Free Trial
+                    </a>
+                    <a href="#features" class="btn btn-outline">
+                        <i class="fas fa-play"></i>
+                        Watch Demo
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Subscribers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-number">₹50L+</div>
+                        <div class="stat-label">Portfolio Value</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">SEBI</div>
+                        <div class="stat-label">Registered</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="subscription-preview">
+                    <div class="preview-card">
+                        <div class="preview-header">
+                            <div class="header-left">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Live Market Updates</span>
+                            </div>
+                            <div class="header-right">
+                                <div class="status-indicator live"></div>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        <div class="preview-content">
+                            <div class="stock-ticker">
+                                <div class="ticker-left">
+                                    <span class="stock-name">RELIANCE</span>
+                                    <span class="stock-symbol">RELIANCE.NS</span>
+                                </div>
+                                <div class="ticker-right">
+                                    <span class="stock-price">₹2,450.75</span>
+                                    <span class="stock-change positive">+2.5%</span>
+                                </div>
+                            </div>
+                            <div class="stock-ticker">
+                                <div class="ticker-left">
+                                    <span class="stock-name">TCS</span>
+                                    <span class="stock-symbol">TCS.NS</span>
+                                </div>
+                                <div class="ticker-right">
+                                    <span class="stock-price">₹3,850.20</span>
+                                    <span class="stock-change negative">-1.2%</span>
+                                </div>
+                            </div>
+                            <div class="stock-ticker">
+                                <div class="ticker-left">
+                                    <span class="stock-name">HDFC BANK</span>
+                                    <span class="stock-symbol">HDFCBANK.NS</span>
+                                </div>
+                                <div class="ticker-right">
+                                    <span class="stock-price">₹1,650.45</span>
+                                    <span class="stock-change positive">+0.8%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-footer">
+                            <div class="market-indicator">
+                                <span class="indicator-label">NIFTY 50</span>
+                                <span class="indicator-value positive">22,450.75</span>
+                            </div>
+                            <div class="market-indicator">
+                                <span class="indicator-label">SENSEX</span>
+                                <span class="indicator-value positive">73,567.89</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What You'll Get</h2>
+                <p class="section-subtitle">
+                    Comprehensive stock advisory services designed to maximize your investment returns
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Daily Market Analysis</h3>
+                    <p>Get detailed analysis of market trends, sector performance, and stock-specific insights delivered daily.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Real-time Alerts</h3>
+                    <p>Receive instant notifications for buy/sell opportunities, market movements, and breaking news.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Community</h3>
+                    <p>Join our exclusive community of traders and investors for discussions and insights.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educational Content</h3>
+                    <p>Access premium educational materials, webinars, and trading tutorials.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile App Access</h3>
+                    <p>Get all features on our mobile app for trading on the go.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Priority Support</h3>
+                    <p>Get priority customer support with dedicated assistance for all your queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <p class="section-subtitle">
+                    Select the perfect plan that fits your investment goals and budget
+                </p>
+            </div>
+            
+            <div class="pricing-toggle">
+                <span>Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="billing-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Annual <span class="save-badge">Save 20%</span></span>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card" data-plan="basic">
+                    <div class="plan-header">
+                        <h3>Basic</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount" data-monthly="999" data-annual="799">999</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Perfect for beginners starting their investment journey</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Daily Market Updates</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>5 Stock Recommendations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Basic Technical Analysis</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Email Support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Weekly Reports</span>
+                        </div>
+                    </div>
+                    
+                    <button class="subscribe-btn" data-plan="basic" data-price="999">
+                        Subscribe Now
+                    </button>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="pricing-card featured" data-plan="pro">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="plan-header">
+                        <h3>Pro</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount" data-monthly="1999" data-annual="1599">1999</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Advanced features for serious traders and investors</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Basic</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>15 Stock Recommendations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Real-time Alerts</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Technical Analysis</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Portfolio Tracking</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority Support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Mobile App Access</span>
+                        </div>
+                    </div>
+                    
+                    <button class="subscribe-btn" data-plan="pro" data-price="1999">
+                        Subscribe Now
+                    </button>
+                </div>
+                
+                <!-- Premium Plan -->
+                <div class="pricing-card" data-plan="premium">
+                    <div class="plan-header">
+                        <h3>Premium</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount" data-monthly="3999" data-annual="3199">3999</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Complete solution for professional traders</p>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Everything in Pro</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Unlimited Recommendations</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>1-on-1 Consultation</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Custom Alerts</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Advanced Analytics</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Dedicated Account Manager</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check"></i>
+                            <span>Exclusive Webinars</span>
+                        </div>
+                    </div>
+                    
+                    <button class="subscribe-btn" data-plan="premium" data-price="3999">
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">
+                    Everything you need to know about our subscription services
+                </p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I cancel my subscription?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can cancel your subscription at any time from your account dashboard. No questions asked, and you'll continue to have access until the end of your billing period.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards, debit cards, UPI, net banking, and digital wallets including Paytm, Google Pay, and PhonePe.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a free trial available?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer a 7-day free trial for all plans. You can cancel anytime during the trial period without any charges.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I upgrade or downgrade my plan?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can upgrade or downgrade your plan at any time. Changes will be prorated and reflected in your next billing cycle.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How accurate are your stock recommendations?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our recommendations are based on thorough research and analysis. While we maintain a high success rate, all investments carry risk and past performance doesn't guarantee future results.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you provide support for beginners?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We provide comprehensive educational content and support for all skill levels, from complete beginners to experienced traders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Start Your Investment Journey?</h2>
+                <p>Join thousands of successful traders who trust our insights and recommendations.</p>
+                <a href="#pricing" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Get Started Today
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Travesting Money</span>
+                    </div>
+                    <p>
+                        SEBI Registered Research Analyst providing equity research, stock recommendations, 
+                        and market education. SEBI Registration No.: INH000014836
+                    </p>
+                    <div class="sebi-compliance">
+                        <div class="compliance-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>SEBI Registered Research Analyst</span>
+                        </div>
+                        <div class="compliance-badge">
+                            <i class="fas fa-certificate"></i>
+                            <span>NSE Certified Market Professional</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Stock Research Reports</a></li>
+                        <li><a href="#">Model Portfolios</a></li>
+                        <li><a href="#">Market Education</a></li>
+                        <li><a href="#">Mentorship Programs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Market Analysis</a></li>
+                        <li><a href="#">Stock Screener</a></li>
+                        <li><a href="#">Research Reports</a></li>
+                        <li><a href="#">Educational Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="compliance.html">Compliance & Disclosures</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-disclaimer">
+                    <p><strong>Disclaimer:</strong> All information provided on this website is for educational and informational purposes only. Travesting Money does not guarantee returns. Stock market investments are subject to market risk. Travesting Money is a SEBI Registered Research Analyst (INH000014836). We do not offer personalized financial planning, PMS, or execution services. Please consult a SEBI Registered Investment Advisor (RIA) for personalized advice.</p>
+                </div>
+                <p>&copy; 2024 Travesting Money. All rights reserved. | SEBI Registered Research Analyst - INH000014836</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919175815888" class="whatsapp-button" target="_blank" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Notification Container -->
+    <div class="notification-container"></div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Complete Your Subscription</h2>
+                <button class="modal-close" id="modal-close" aria-label="Close modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="plan-summary">
+                    <h3 id="selected-plan">Pro Plan</h3>
+                    <p id="selected-price">₹1,999/month</p>
+                </div>
+                
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label for="card-name">Cardholder Name</label>
+                        <input type="text" id="card-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <div class="card-input">
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" id="card-expiry" placeholder="MM/YY" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-cvc">CVC</label>
+                            <input type="text" id="card-cvc" placeholder="123" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-lock"></i>
+                        Pay Securely
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/subscription.js"></script>
+</body>
+</html> 
