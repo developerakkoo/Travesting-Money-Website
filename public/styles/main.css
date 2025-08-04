@@ -183,7 +183,7 @@ section {
 }
 
 .logo-image {
-    height: 4rem;
+    height: 7rem;
     width: auto;
     max-width: 200px;
     object-fit: contain;
@@ -4131,7 +4131,7 @@ section {
     }
     
     .logo-image {
-        height: 3rem;
+        height: 10rem;
         max-width: 150px;
     }
     
@@ -4411,7 +4411,7 @@ section {
     }
     
     .logo-image {
-        height: 2.5rem;
+        height: 7.5rem;
         max-width: 120px;
     }
     

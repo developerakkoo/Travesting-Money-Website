@@ -18,16 +18,61 @@ document.addEventListener('DOMContentLoaded', function() {
     initMarketIndicators();
     
     // Initialize blogs if on homepage
+    console.log('Checking for blogs grid...');
     if (document.querySelector('#blogs-grid')) {
+        console.log('Blogs grid found, initializing blogs...');
         // Load blogs script dynamically if not already loaded
         if (!window.blogScriptLoaded) {
+            console.log('Loading blogs.js script...');
             const script = document.createElement('script');
             script.src = 'scripts/blogs.js';
             script.onload = function() {
+                console.log('Blogs.js script loaded successfully');
                 window.blogScriptLoaded = true;
+                // Initialize blogs after script loads
+                if (typeof initializeBlogs === 'function') {
+                    console.log('Calling initializeBlogs...');
+                    initializeBlogs();
+                } else {
+                    console.error('initializeBlogs function not found');
+                }
+            };
+            script.onerror = function() {
+                console.error('Failed to load blogs.js');
+                // Show error message in blogs grid
+                const blogsGrid = document.getElementById('blogs-grid');
+                if (blogsGrid) {
+                    blogsGrid.innerHTML = `
+                        <div class="blog-error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Error Loading Blogs</h3>
+                            <p>Failed to load blog content. Please refresh the page.</p>
+                        </div>
+                    `;
+                }
             };
             document.head.appendChild(script);
+        } else {
+            // If script is already loaded, initialize blogs
+            if (typeof initializeBlogs === 'function') {
+                initializeBlogs();
+            }
         }
+        
+        // Fallback: if blogs don't load within 5 seconds, show error
+        setTimeout(() => {
+            const blogsGrid = document.getElementById('blogs-grid');
+            if (blogsGrid && blogsGrid.querySelector('.blog-loading')) {
+                console.warn('Blogs failed to load, showing error message');
+                blogsGrid.innerHTML = `
+                    <div class="blog-error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Connection Error</h3>
+                        <p>Unable to load blogs. Please check your internet connection and refresh the page.</p>
+                    </div>
+                `;
+            }
+        }, 5000);
     }
     
     // Ensure hero section is visible

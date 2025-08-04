@@ -23,7 +23,10 @@ const blogsPerPage = 9;
 
 // Initialize blog functionality
 document.addEventListener('DOMContentLoaded', function() {
-    initializeBlogs();
+    // Only initialize if not already initialized by main.js
+    if (!window.blogScriptLoaded) {
+        initializeBlogs();
+    }
     initializeSearch();
     initializeFilters();
     initializeModal();
@@ -31,12 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize blogs
 async function initializeBlogs() {
+    console.log('Initializing blogs...');
     try {
         await loadBlogs();
         
         // Check if we're on the homepage or blogs page
         const isHomepage = document.querySelector('#blogs-grid') !== null;
         const isBlogsPage = document.querySelector('#all-blogs-grid') !== null;
+        
+        console.log('Homepage:', isHomepage, 'Blogs page:', isBlogsPage);
         
         if (isHomepage) {
             displayLatestBlogs();
@@ -51,9 +57,18 @@ async function initializeBlogs() {
 
 // Load blogs from Firestore
 async function loadBlogs() {
+    console.log('Loading blogs from Firestore...');
     try {
+        // Test Firebase connection first
+        console.log('Testing Firebase connection...');
+        console.log('Firebase app:', firebase.app());
+        console.log('Firestore instance:', db);
+        
         const blogsRef = db.collection('blogs');
+        console.log('Firestore reference created');
+        
         const snapshot = await blogsRef.orderBy('updatedAt', 'desc').get();
+        console.log('Snapshot received, docs count:', snapshot.docs.length);
         
         allBlogs = snapshot.docs.map(doc => ({
             id: doc.id,
@@ -64,6 +79,34 @@ async function loadBlogs() {
         filteredBlogs = [...allBlogs];
         
         console.log('Blogs loaded:', allBlogs.length);
+        if (allBlogs.length > 0) {
+            console.log('Sample blog:', allBlogs[0]);
+        } else {
+            console.log('No blogs found in Firestore, using sample data for testing');
+            // Add sample blogs for testing if no blogs are found
+            allBlogs = [
+                {
+                    id: 'sample-1',
+                    title: 'Market Analysis: Nifty 50 Outlook',
+                    content: '<p>This is a sample blog post about market analysis. The Nifty 50 index has shown strong momentum in recent sessions...</p>',
+                    updatedAt: new Date()
+                },
+                {
+                    id: 'sample-2',
+                    title: 'Trading Strategies for Beginners',
+                    content: '<p>Learn the fundamentals of trading with our comprehensive guide for beginners...</p>',
+                    updatedAt: new Date(Date.now() - 86400000) // 1 day ago
+                },
+                {
+                    id: 'sample-3',
+                    title: 'Investment Tips for 2024',
+                    content: '<p>Discover the top investment strategies and tips for the year 2024...</p>',
+                    updatedAt: new Date(Date.now() - 172800000) // 2 days ago
+                }
+            ];
+            filteredBlogs = [...allBlogs];
+            console.log('Sample blogs created:', allBlogs.length);
+        }
     } catch (error) {
         console.error('Error loading blogs:', error);
         throw error;
@@ -72,12 +115,18 @@ async function loadBlogs() {
 
 // Display latest 3 blogs on homepage
 function displayLatestBlogs() {
+    console.log('Displaying latest blogs...');
     const blogsGrid = document.getElementById('blogs-grid');
-    if (!blogsGrid) return;
+    if (!blogsGrid) {
+        console.error('Blogs grid not found');
+        return;
+    }
     
     const latestBlogs = allBlogs.slice(0, 3);
+    console.log('Latest blogs:', latestBlogs.length);
     
     if (latestBlogs.length === 0) {
+        console.log('No blogs available, showing empty state');
         blogsGrid.innerHTML = `
             <div class="blog-empty">
                 <i class="fas fa-newspaper"></i>
@@ -88,7 +137,9 @@ function displayLatestBlogs() {
         return;
     }
     
+    console.log('Rendering blog cards...');
     blogsGrid.innerHTML = latestBlogs.map(blog => createBlogCard(blog)).join('');
+    console.log('Blog cards rendered');
 }
 
 // Display all blogs on blogs page
@@ -450,4 +501,5 @@ function showNotification(message, type = 'info') {
 // Export functions for global access
 window.openBlogModal = openBlogModal;
 window.closeBlogModal = closeBlogModal;
-window.changePage = changePage; 
+window.changePage = changePage;
+window.initializeBlogs = initializeBlogs; 
