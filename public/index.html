@@ -49,7 +49,7 @@
         <div class="nav-container">
             <div class="nav-logo">
                 <a href="#home">
-                    <img src="./images/Logo BLACK H.png" alt="Travesting Money Logo" class="logo-image">
+                    <img src="./images/Logo COLOR H.svg" alt="Travesting Money Logo" class="logo-image">
                     <!-- <span>Travesting Money</span> -->
                 </a>
             </div>
@@ -78,15 +78,33 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="data-streams"></div>
-        <div class="floating-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
+        <!-- Background Elements -->
+        <div class="hero-background">
+            <!-- Gradient Orbs -->
+            <div class="gradient-orb gradient-orb-1"></div>
+            <div class="gradient-orb gradient-orb-2"></div>
+            <div class="gradient-orb gradient-orb-3"></div>
+            
+            <!-- Floating Particles -->
+            <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            
+            <!-- Data Streams -->
+            <div class="data-streams">
+                <div class="data-stream"></div>
+                <div class="data-stream"></div>
+                <div class="data-stream"></div>
+                <div class="data-stream"></div>
+            </div>
         </div>
-        <div class="professional-overlay"></div>
         
         <div class="hero-container">
             <div class="hero-content">
@@ -114,10 +132,7 @@
                         <i class="fas fa-crown"></i>
                         Get Premium
                     </a>
-                    <a href="#demo" class="btn btn-outline">
-                        <i class="fas fa-eye"></i>
-                        Learn More
-                    </a>
+                   
                 </div>
                 
                 <div class="hero-stats">
@@ -137,62 +152,125 @@
             </div>
             
             <div class="hero-visual">
-                <div class="trading-dashboard">
-                    <div class="dashboard-header">
-                        <div class="market-status">
-                            <div class="status-indicator live"></div>
-                            <span>Market Open</span>
-                        </div>
-                        <div class="time-display">
-                            <i class="fas fa-clock"></i>
-                            <span id="market-time">09:30 AM IST</span>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-display">
-                        <div class="retro-tv-screen">
-                            <div class="tv-static"></div>
-                            <div class="stock-display">
-                                <div class="stock-data">
-                                    <div class="stock-name" id="stock-name">RELIANCE</div>
-                                    <div class="stock-price" id="stock-price">₹2,450.75</div>
-                                    <div class="stock-change" id="stock-change">+45.50 (+1.89%)</div>
+                <div class="ipad-screen">
+                    <div class="ipad-frame">
+                        <div class="ipad-screen-content">
+                            <div class="stock-details-container">
+                                <!-- Stock Header -->
+                                <div class="stock-header">
+                                    <div class="stock-main-info">
+                                        <div class="stock-name-symbol">
+                                            <h3 class="stock-name">Reliance Industries</h3>
+                                            <span class="stock-symbol">RELIANCE</span>
+                                        </div>
+                                        <div class="stock-price-info">
+                                            <span class="stock-price">₹2,450.75</span>
+                                            <span class="stock-change positive">+45.50 (+1.89%)</span>
+                                        </div>
+                                    </div>
+                                    <div class="chart-time">09:30 AM IST</div>
                                 </div>
-                                <div class="trade-result" id="trade-result" style="display: none;">
-                                    <div class="result-message" id="result-message"></div>
-                                    <div class="result-profit" id="result-profit"></div>
+                                
+                                <!-- Stock Analysis Details -->
+                                <div class="stock-analysis-grid">
+                                    <div class="analysis-item">
+                                        <div class="analysis-label">
+                                            <i class="fas fa-arrow-trend-up"></i>
+                                            Potential Upside
+                                        </div>
+                                        <div class="analysis-value positive">+18.5%</div>
+                                    </div>
+                                    
+                                    <div class="analysis-item">
+                                        <div class="analysis-label">
+                                            <i class="fas fa-shield-alt"></i>
+                                            Stop Loss
+                                        </div>
+                                        <div class="analysis-value">₹2,180</div>
+                                    </div>
+                                    
+                                    <div class="analysis-item">
+                                        <div class="analysis-label">
+                                            <i class="fas fa-bullseye"></i>
+                                            Target Price
+                                        </div>
+                                        <div class="analysis-value positive">₹2,905</div>
+                                    </div>
+                                    
+                                    <div class="analysis-item">
+                                        <div class="analysis-label">
+                                            <i class="fas fa-star"></i>
+                                            Risk Rating
+                                        </div>
+                                        <div class="analysis-value">
+                                            <div class="risk-score">
+                                                <span class="risk-level">Medium</span>
+                                                <div class="risk-bars">
+                                                    <span class="risk-bar active"></span>
+                                                    <span class="risk-bar active"></span>
+                                                    <span class="risk-bar active"></span>
+                                                    <span class="risk-bar"></span>
+                                                    <span class="risk-bar"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Disclaimer -->
+                                <div class="stock-disclaimer">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>This data is for visual representation only</span>
+                                </div>
+                                
+                                <!-- Chart Area at Bottom -->
+                                <div class="chart-area">
+                                    <svg class="stock-chart" viewBox="0 0 300 120" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.3" />
+                                                <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1" />
+                                            </linearGradient>
+                                            <linearGradient id="chartGradientRed" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#ef4444;stop-opacity:0.3" />
+                                                <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <path class="chart-line" d="M0,60 L30,50 L60,55 L90,40 L120,30 L150,20 L180,15 L210,10 L240,8 L270,5 L300,3" stroke="#10b981" stroke-width="2" fill="none"/>
+                                        <path class="chart-area-path" d="M0,60 L30,50 L60,55 L90,40 L120,30 L150,20 L180,15 L210,10 L240,8 L270,5 L300,3 L300,120 L0,120 Z" fill="url(#chartGradient)"/>
+                                    </svg>
+                                </div>
+                                
+                                <div class="trade-result-notification" id="trade-result-notification" style="display: none;">
+                                    <div class="notification-content">
+                                        <div class="notification-icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <div class="notification-text">
+                                            <div class="notification-title" id="notification-title">Trade Successful!</div>
+                                            <div class="notification-message" id="notification-message">You made a profit of ₹45.50</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="trading-panel">
-                        <div class="stock-info">
-                            <div class="stock-symbol" id="panel-symbol">RELIANCE</div>
-                            <div class="stock-price" id="panel-price">₹2,450.75</div>
-                            <div class="stock-change positive" id="panel-change">+45.50 (+1.89%)</div>
-                        </div>
-                        <div class="trade-buttons">
-                            <button class="trade-btn buy" id="buy-btn">BUY</button>
-                            <button class="trade-btn sell" id="sell-btn">SELL</button>
-                        </div>
-                    </div>
                 </div>
                 
-                <div class="market-indicators">
-                    <div class="indicator">
-                        <span class="indicator-label">NIFTY 50</span>
-                        <span class="indicator-value positive">22,450.75</span>
+                <!-- <div class="trading-controls">
+                    <div class="trade-buttons">
+                        <button class="trade-btn buy" id="buy-btn">
+                            <i class="fas fa-arrow-up"></i>
+                            BUY
+                        </button>
+                        <button class="trade-btn sell" id="sell-btn">
+                            <i class="fas fa-arrow-down"></i>
+                            SELL
+                        </button>
                     </div>
-                    <div class="indicator">
-                        <span class="indicator-label">BANK NIFTY</span>
-                        <span class="indicator-value positive">48,234.56</span>
-                    </div>
-                    <div class="indicator">
-                        <span class="indicator-label">SENSEX</span>
-                        <span class="indicator-value positive">73,567.12</span>
-                    </div>
-                </div>
+                   
+                </div> -->
+
             </div>
         </div>
         
@@ -204,79 +282,523 @@
         </div> -->
     </section>
 
-    <!-- Research Section -->
-     <section id="courses" class="courses">
+    <!-- Services Slider Section -->
+    <section id="services" class="services-slider-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Equity Research & Analysis</h2>
+                <h2 class="section-title">Our Premium Services</h2>
                 <p class="section-subtitle">
-                    Data-driven equity research and stock recommendations based on fundamental analysis, 
-                    technical frameworks, and structured risk assessment.
+                    Comprehensive financial services designed to empower your investment journey with professional insights and expert guidance
+                </p>
+            </div>
+            
+            <div class="services-slider-container">
+                <div class="services-slider-track">
+                    <!-- Service 1: Equity Research -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Equity Research</h3>
+                            <p class="service-description">
+                                In-depth analysis of stocks with buy/sell recommendations backed by fundamental and technical research
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Fundamental Analysis</span>
+                                <span class="feature-tag">Technical Charts</span>
+                                <span class="feature-tag">Risk Assessment</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="chart-animation">
+                                <div class="chart-line"></div>
+                                <div class="chart-points">
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Portfolio Management -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Portfolio Management</h3>
+                            <p class="service-description">
+                                Strategic portfolio construction and management tailored to your risk profile and investment goals
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Asset Allocation</span>
+                                <span class="feature-tag">Risk Management</span>
+                                <span class="feature-tag">Regular Reviews</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="portfolio-animation">
+                                <div class="pie-chart">
+                                    <div class="slice slice-1"></div>
+                                    <div class="slice slice-2"></div>
+                                    <div class="slice slice-3"></div>
+                                    <div class="slice slice-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Trading Education -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Trading Education</h3>
+                            <p class="service-description">
+                                Comprehensive trading courses and workshops to build your knowledge and trading skills
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Live Sessions</span>
+                                <span class="feature-tag">Practical Training</span>
+                                <span class="feature-tag">Market Psychology</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="education-animation">
+                                <div class="book-stack">
+                                    <div class="book book-1"></div>
+                                    <div class="book book-2"></div>
+                                    <div class="book book-3"></div>
+                                </div>
+                                <div class="graduation-cap">
+                                    <div class="cap"></div>
+                                    <div class="tassel"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Market Analysis -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Market Analysis</h3>
+                            <p class="service-description">
+                                Daily market updates, trend analysis, and economic insights to keep you informed
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Daily Reports</span>
+                                <span class="feature-tag">Trend Analysis</span>
+                                <span class="feature-tag">Economic Insights</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="market-animation">
+                                <div class="market-indicators">
+                                    <div class="indicator indicator-1">
+                                        <div class="indicator-bar"></div>
+                                    </div>
+                                    <div class="indicator indicator-2">
+                                        <div class="indicator-bar"></div>
+                                    </div>
+                                    <div class="indicator indicator-3">
+                                        <div class="indicator-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 5: Investment Advisory -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Investment Advisory</h3>
+                            <p class="service-description">
+                                Personalized investment advice and financial planning to achieve your wealth goals
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Personalized Plans</span>
+                                <span class="feature-tag">Goal Setting</span>
+                                <span class="feature-tag">Regular Monitoring</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="advisory-animation">
+                                <div class="consultation-scene">
+                                    <div class="person person-1"></div>
+                                    <div class="person person-2"></div>
+                                    <div class="document"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 6: Risk Management -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Risk Management</h3>
+                            <p class="service-description">
+                                Advanced risk assessment and mitigation strategies to protect your investments
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Risk Assessment</span>
+                                <span class="feature-tag">Stop Loss</span>
+                                <span class="feature-tag">Portfolio Protection</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="risk-animation">
+                                <div class="shield">
+                                    <div class="shield-body"></div>
+                                    <div class="shield-border"></div>
+                                </div>
+                                <div class="protection-rays">
+                                    <div class="ray ray-1"></div>
+                                    <div class="ray ray-2"></div>
+                                    <div class="ray ray-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate cards for seamless loop -->
+                    <!-- Service 1 Duplicate -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Equity Research</h3>
+                            <p class="service-description">
+                                In-depth analysis of stocks with buy/sell recommendations backed by fundamental and technical research
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Fundamental Analysis</span>
+                                <span class="feature-tag">Technical Charts</span>
+                                <span class="feature-tag">Risk Assessment</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="chart-animation">
+                                <div class="chart-line"></div>
+                                <div class="chart-points">
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                    <div class="point"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 Duplicate -->
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Portfolio Management</h3>
+                            <p class="service-description">
+                                Strategic portfolio construction and management tailored to your risk profile and investment goals
+                            </p>
+                            <div class="service-features">
+                                <span class="feature-tag">Asset Allocation</span>
+                                <span class="feature-tag">Risk Management</span>
+                                <span class="feature-tag">Regular Reviews</span>
+                            </div>
+                        </div>
+                        <div class="service-visual">
+                            <div class="portfolio-animation">
+                                <div class="pie-chart">
+                                    <div class="slice slice-1"></div>
+                                    <div class="slice slice-2"></div>
+                                    <div class="slice slice-3"></div>
+                                    <div class="slice slice-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explore Button -->
+            <div class="services-explore">
+                <a href="subscription.html" class="btn btn-primary explore-btn">
+                    <i class="fas fa-rocket"></i>
+                    Explore All Services
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Premium Trading & Investment Courses</h2>
+                <p class="section-subtitle">
+                    Master the art of trading and investing with our comprehensive, research-backed courses designed by SEBI-registered professionals
                 </p>
             </div>
             
             <div class="courses-grid">
+                <!-- Course 1: Elite Trading Masterclass -->
                 <div class="course-card">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stock Research Reports">
-                        <div class="course-badge">Research</div>
+                    <div class="course-header">
+                        <div class="course-badge">Popular</div>
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Elite Trading Masterclass">
+                            <div class="course-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="course-content">
-                        <h3>Stock Research Reports</h3>
-                        <p>Comprehensive equity research reports with fundamental analysis, technical insights, and risk assessment.</p>
+                        <div class="course-category">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Technical Analysis</span>
+                        </div>
+                        <h3>Elite Trading Masterclass: Technicals, Intraday & Swing</h3>
+                        <p>Unlock the complete roadmap to profitable trading with proprietary PUCORE strategy and Confluence Trading System.</p>
+                        <div class="course-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>30+ Powerful Modules</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>PUCORE Strategy</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Smart Money Concepts</span>
+                            </div>
+                        </div>
                         <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> Weekly Reports</span>
-                            <span><i class="fas fa-users"></i> 500+ Reports</span>
-                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>15 Days</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>1000+ Students</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5</span>
+                            </div>
                         </div>
                         <div class="course-price">
-                            <div class="price">Premium</div>
-                            <a href="#" class="btn btn-primary">View Reports</a>
+                            <div class="price-info">
+                                <span class="original-price">₹19,999</span>
+                                <span class="discounted-price">₹14,999</span>
+                                <span class="discount-badge">25% OFF</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i>
+                                Enroll Now
+                            </a>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Course 2: Smart Investor's Blueprint -->
                 <div class="course-card featured">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Model Portfolios">
-                        <div class="course-badge">Portfolio</div>
+                    <div class="course-header">
+                        <div class="course-badge featured">Featured</div>
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Smart Investor's Blueprint">
+                            <div class="course-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="course-content">
-                        <h3>Model Portfolios</h3>
-                        <p>Non-discretionary, research-based stock model portfolios under SEBI RA guidelines for educational purposes.</p>
+                        <div class="course-category">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Fundamental Analysis</span>
+                        </div>
+                        <h3>The Smart Investor's Blueprint: Complete Fundamental Analysis Program</h3>
+                        <p>Master the art of identifying high-potential, long-term wealth-building opportunities with advanced frameworks.</p>
+                        <div class="course-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>35+ Comprehensive Modules</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Multibagger Frameworks</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Sector Rotation Strategies</span>
+                            </div>
+                        </div>
                         <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> Monthly Updates</span>
-                            <span><i class="fas fa-users"></i> 200+ Stocks</span>
-                            <span><i class="fas fa-star"></i> 4.8/5</span>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>15 Days</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>800+ Students</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.8/5</span>
+                            </div>
                         </div>
                         <div class="course-price">
-                            <div class="price">Premium</div>
-                            <a href="#" class="btn btn-primary">View Portfolios</a>
+                            <div class="price-info">
+                                <span class="original-price">₹19,999</span>
+                                <span class="discounted-price">₹14,999</span>
+                                <span class="discount-badge">25% OFF</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i>
+                                Enroll Now
+                            </a>
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Course 3: Options Trading Masterclass -->
                 <div class="course-card">
-                    <div class="course-image">
-                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Education">
-                        <div class="course-badge">Education</div>
+                    <div class="course-header">
+                        <div class="course-badge">Advanced</div>
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Options Trading Masterclass">
+                            <div class="course-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
                     </div>
                     <div class="course-content">
-                        <h3>Market Education</h3>
-                        <p>Structured mentorship programs and educational content to build strong foundation in fundamental and technical analysis.</p>
+                        <div class="course-category">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Options Trading</span>
+                        </div>
+                        <h3>Profitable Options Trading & Hedging Masterclass</h3>
+                        <p>Transform into a strategic options trader with directional and non-directional strategies for all market conditions.</p>
+                        <div class="course-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>30+ High-Impact Modules</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Advanced Hedging Techniques</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Strategy Backtesting</span>
+                            </div>
+                        </div>
                         <div class="course-meta">
-                            <span><i class="fas fa-clock"></i> Live Sessions</span>
-                            <span><i class="fas fa-users"></i> 1000+ Students</span>
-                            <span><i class="fas fa-star"></i> 4.9/5</span>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>15 Days</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>600+ Students</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.7/5</span>
+                            </div>
                         </div>
                         <div class="course-price">
-                            <div class="price">Premium</div>
-                            <a href="#" class="btn btn-primary">Join Program</a>
+                            <div class="price-info">
+                                <span class="original-price">₹19,999</span>
+                                <span class="discounted-price">₹14,999</span>
+                                <span class="discount-badge">25% OFF</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i>
+                                Enroll Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4: Market Mastery Program -->
+                <div class="course-card premium">
+                    <div class="course-header">
+                        <div class="course-badge premium">Premium</div>
+                        <div class="course-image">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market Mastery Program">
+                            <div class="course-overlay">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-category">
+                            <i class="fas fa-crown"></i>
+                            <span>Complete Mastery</span>
+                        </div>
+                        <h3>Market Mastery Program: Complete Stock Market Blueprint</h3>
+                        <p>The ultimate all-in-one program combining technical analysis, fundamental analysis, and options trading with exclusive add-ons.</p>
+                        <div class="course-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>100+ Well-Researched Modules</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>AI Tools & Portfolio Building</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>1 Month Free Subscription</span>
+                            </div>
+                        </div>
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>45 Days</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-users"></i>
+                                <span>500+ Students</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5</span>
+                            </div>
+                        </div>
+                        <div class="course-price">
+                            <div class="price-info">
+                                <span class="original-price">₹44,999</span>
+                                <span class="discounted-price">₹39,999</span>
+                                <span class="discount-badge">11% OFF</span>
+                            </div>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i>
+                                Enroll Now
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
     </section> 
 
     <!-- Testimonials Section -->
@@ -289,130 +811,473 @@
                 </p>
             </div>
             
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <i class="fas fa-user"></i>
+            <div class="testimonials-horizontal-container">
+                <div class="testimonials-track" id="testimonials-track">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <img src="images/testimonial-profiles/1.jpg" alt="Vinay Sagare">
+                            </div>
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Vinay Sagare</h4>
+                                <p class="testimonial-designation">Senior Software Engineer</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Vinay Sagare</h4>
-                            <p class="testimonial-designation">Senior Software Engineer</p>
+                        <div class="testimonial-caption">
+                            "Finally trading profitably after years of struggle with Travesting Money's Mentorship & Swing Subscription Plan"
                         </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="testimonial-review">
+                            <p>"I had been trading for years without seeing consistent profits — hopping between tips and strategies. Joining Travesting Money's June batch of the Market Mastery Program was the turning point. Their structured mentorship, practical learning, and real-time examples helped me finally understand profitable trading. I also subscribed to their Swing Trading Plan — the entry, exit, stop loss, and risk-reward guidance is precise, and most targets hit if followed properly. Now, I'm finally profitable and trading with clarity and conviction. A complete package for anyone serious about trading success."</p>
                         </div>
                     </div>
-                    <div class="testimonial-caption">
-                        "Finally trading profitably after years of struggle with Travesting Money's Mentorship & Swing Subscription Plan"
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/2.jpg" alt="Akash Goyal">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Akash Goyal</h4>
+                                    <p class="testimonial-designation">Founder & CEO - Medlius Pharma Pvt Ltd</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Rare to find this level of research outside big institutions. Travesting Money stands out for all the right reasons."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"Being from a completely different industry, I always wanted a research-oriented and ethical stock market advisory — and Travesting Money exceeded my expectations. The quality of research reports, diversification approach, and clarity on entry-exit points show the professionalism they carry. It's rare to see such data-driven research outside institutional setups."</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-review">
-                        <p>"I had been trading for years without seeing consistent profits — hopping between tips and strategies. Joining Travesting Money's June batch of the Market Mastery Program was the turning point. Their structured mentorship, practical learning, and real-time examples helped me finally understand profitable trading. I also subscribed to their Swing Trading Plan — the entry, exit, stop loss, and risk-reward guidance is precise, and most targets hit if followed properly. Now, I'm finally profitable and trading with clarity and conviction. A complete package for anyone serious about trading success."</p>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/3.jpg" alt="Yash Pawar">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Yash Pawar</h4>
+                                    <p class="testimonial-designation">Real Estate Developer</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Well-structured Entries, Exits, SL and consistent profits with discipline"
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"I subscribed to the short to mid-term swing trading plan, and I must say — their entry, exit, and stop loss levels are extremely well-structured. With discipline and following their guidance, I started seeing profits consistently. The setup is professional and designed for serious traders."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/4.jpg" alt="Dipak Chuhan">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Dipak Chuhan</h4>
+                                    <p class="testimonial-designation">Director at Trytime Stores Pvt. Ltd.</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "From zero to confident trader and investor, all credit to Omkar Sir's unmatched knowledge and mentorship."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"Joining the mentorship by Omkar Sir helped me truly understand the mechanics behind stock selection. The in-house frameworks, sector rotation strategies, and economic analysis concepts they teach are rarely found in public platforms. It's a serious edge for anyone who wants to take investing seriously."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/5.jpg" alt="Shriraj Jadhav">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Shriraj Jadhav</h4>
+                                    <p class="testimonial-designation">Senior cloud data engineer</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Choosing a SEBI-registered platform gave me the trust I needed to invest confidently."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"In a market full of noise, finding a SEBI-registered research analyst like Travesting Money was a game-changer. The transparency, compliance, and ethical practices give me immense confidence that I'm taking advice from a credible source. It's rare to find such professionalism and trust in stock market advisory services."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/6.jpg" alt="Prashant Shirke">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Prashant Shirke</h4>
+                                    <p class="testimonial-designation">Senior Product Engineer</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Profitable options trading doesn't need to be complicated. Just needs the right mentor."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"Profitable Options Trading Mentorship was a game-changer. I learned how to build directional and non-directional strategies with proper risk management. I now trade options profitably with a structured plan."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 7 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/7.jpg" alt="Prajakta Shinde">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Prajakta Shinde</h4>
+                                    <p class="testimonial-designation">Founder and Principal Architect PS Design Studios</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "I used to believe stock market is not for women — I was so wrong!"
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"What I admire most is the data-driven approach. Each suggestion is backed by clear fundamentals, sector analysis, and future growth potential. As a woman investor, I now feel far more empowered with my investments."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 8 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/8.jpg" alt="Abhishek Ankush">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Abhishek Ankush</h4>
+                                    <p class="testimonial-designation">Senior Solutions Architect</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Respect to Omkar Sir, his experience, depth, and teaching style make complex trading feel so simple."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"I've taken multiple courses online, but nothing compares to the in-depth knowledge and personal guidance offered in the Market Mastery Mentorship. It's not just education—it's transformation."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 9 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/9.jpg" alt="Ravi Chauhan">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Ravi Chauhan</h4>
+                                    <p class="testimonial-designation">Test Automation Lead in Barclays</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Best platform for working professionals"
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"As a working professional, I was looking for short to mid-term trading opportunities that didn't require constant monitoring. Travesting Money provides exactly that through clearly defined entry and exit points, well-researched targets, and disciplined risk management."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 10 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/10.jpg" alt="Aparna Shukla">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Aparna Shukla</h4>
+                                    <p class="testimonial-designation">Back End Engineer II</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Omkar Sir has literally decoded the markets. No fluff, just pure structured brilliance."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"I joined Travesting Money's mentorship thinking the market was too complicated for someone like me. But Omkar Sir's structured teaching, real examples, and in-house frameworks made everything clear. From technical analysis to options trading—I now trade confidently on my own. Truly empowering!"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 11 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/11.jpg" alt="Suman Goswami">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Suman Goswami</h4>
+                                    <p class="testimonial-designation">Senior System Engineer</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Omkar Sir's deep knowledge and structured systems like PUCORE and Confluence strategies changed how I trade forever."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"Travesting Money's Technical Analysis Mentorship has completely elevated my trading mindset. What sets it apart is their structured curriculum backed by in-house developed systems like the PUCORE strategy and Confluence trading setup. I gained deep insights into Advanced Technical Analysis, refined Price Action techniques, and even learned the Smart Money Concept (SMC) used by institutions. The mentorship has truly sharpened my understanding of market behavior and helped me build strategies with conviction. It's not just about patterns—it's about logic, discipline, and institutional-level thinking."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 12 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/12.jpg" alt="Koyal Sawant">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Koyal Sawant</h4>
+                                    <p class="testimonial-designation">Software Developer</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "As a working woman, I now trade and invest confidently — knowledge is power, and this platform gave me both."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"I've tried multiple advisory platforms, but Travesting Money stands out for its personalized attention and evidence-backed stock ideas. Their focus on investor education is a big plus for women like me who want to learn while investing."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 13 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/13.jpg" alt="Chetan Bangera">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Chetan Bangera</h4>
+                                    <p class="testimonial-designation">BI Specialist I Project Manager</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "More value in 3 months than years of random learning."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"The platform's combination of SEBI-compliant advisory, expert mentorship, and investor education is unmatched. I've learned more in 3 months than in the last 3 years on my own."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 14 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/14.jpg" alt="Sandeep Suthar">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Sandeep Suthar</h4>
+                                    <p class="testimonial-designation">Delivery Head</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Lost money listening to noise. Now I listen to research."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"I used to trade and invest on the basis of random Telegram tips and YouTube channels, which only led to losses and confusion. After searching for SEBI-registered platforms, I got to know about Travesting Money and subscribed to their swing trading and model portfolio services. It offered research-backed stock ideas with a clear entry, target, and stop loss. The consistency was unmatched. Later, I joined their mentorship program and that's where the real transformation happened. I learned frameworks, technical setups, and gained the confidence to make independent trading decisions. For the first time, I feel in control of my money."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 15 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/15.jpg" alt="Shreeraj Nikam">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Shreeraj Nikam</h4>
+                                    <p class="testimonial-designation">Project Manager</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "There's a huge difference between unregulated tips and SEBI-authorized research — I've seen both."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"There's a huge difference between free advice and real research. Travesting's short-to-mid term swing trading stock suggestions are curated, logical, and easy to follow even for non-finance professionals like me."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 16 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    <img src="images/testimonial-profiles/16.jpg" alt="Upendra Dandawate">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Upendra Dandawate</h4>
+                                    <p class="testimonial-designation">Product Manager</p>
+                                </div>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-caption">
+                                "Worth single penny spend. You can understand the research depth in every suggestion."
+                            </div>
+                            <div class="testimonial-review">
+                                <p>"What sets them apart is the quality of equity research. Every stock recommendation is backed by detailed analysis, sector outlook, and future growth potential. A truly credible and trustworthy platform."</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="testimonial-card featured">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Akash Goyal</h4>
-                            <p class="testimonial-designation">Founder & CEO - Medlius Pharma Pvt Ltd</p>
-                        </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-caption">
-                        "Rare to find this level of research outside big institutions. Travesting Money stands out for all the right reasons."
-                    </div>
-                    <div class="testimonial-review">
-                        <p>"Being from a completely different industry, I always wanted a research-oriented and ethical stock market advisory — and Travesting Money exceeded my expectations. The quality of research reports, diversification approach, and clarity on entry-exit points show the professionalism they carry. It's rare to see such data-driven research outside institutional setups."</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Yash Pawar</h4>
-                            <p class="testimonial-designation">Real Estate Developer</p>
-                        </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-caption">
-                        "Well-structured Entries, Exits, SL and consistent profits with discipline"
-                    </div>
-                    <div class="testimonial-review">
-                        <p>"I subscribed to the short to mid-term swing trading plan, and I must say — their entry, exit, and stop loss levels are extremely well-structured. With discipline and following their guidance, I started seeing profits consistently. The setup is professional and designed for serious traders."</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Dipak Chuhan</h4>
-                            <p class="testimonial-designation">Director at Trytime Stores Pvt. Ltd.</p>
-                        </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-caption">
-                        "From zero to confident trader and investor, all credit to Omkar Sir's unmatched knowledge and mentorship."
-                    </div>
-                    <div class="testimonial-review">
-                        <p>"Joining the mentorship by Omkar Sir helped me truly understand the mechanics behind stock selection. The in-house frameworks, sector rotation strategies, and economic analysis concepts they teach are rarely found in public platforms. It's a serious edge for anyone who wants to take investing seriously."</p>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 class="testimonial-name">Prajakta Shinde</h4>
-                            <p class="testimonial-designation">Founder and Principal Architect PS Design Studios</p>
-                        </div>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="testimonial-caption">
-                        "I used to believe stock market is not for women — I was so wrong!"
-                    </div>
-                    <div class="testimonial-review">
-                        <p>"What I admire most is the data-driven approach. Each suggestion is backed by clear fundamentals, sector analysis, and future growth potential. As a woman investor, I now feel far more empowered with my investments."</p>
-                    </div>
+                
+                <!-- Navigation Dots -->
+                <div class="testimonial-dots" id="testimonial-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
+                    <span class="dot" data-slide="4"></span>
+                    <span class="dot" data-slide="5"></span>
+                    <span class="dot" data-slide="6"></span>
+                    <span class="dot" data-slide="7"></span>
+                    <span class="dot" data-slide="8"></span>
+                    <span class="dot" data-slide="9"></span>
+                    <span class="dot" data-slide="10"></span>
+                    <span class="dot" data-slide="11"></span>
+                    <span class="dot" data-slide="12"></span>
+                    <span class="dot" data-slide="13"></span>
+                    <span class="dot" data-slide="14"></span>
+                    <span class="dot" data-slide="15"></span>
                 </div>
             </div>
         </div>
@@ -777,5 +1642,6 @@
 
     <!-- Custom JavaScript -->
     <script src="scripts/main.js"></script>
+    <script src="scripts/blogs.js"></script>
 </body>
 </html> 

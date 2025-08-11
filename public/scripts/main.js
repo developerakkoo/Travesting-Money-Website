@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeScrollEffects();
     initializeMarketTime();
     initializeResponsiveFeatures();
+    initializeServicesSlider();
     
     // Initialize stock trading
     initStockTrading();
@@ -21,58 +22,25 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Checking for blogs grid...');
     if (document.querySelector('#blogs-grid')) {
         console.log('Blogs grid found, initializing blogs...');
-        // Load blogs script dynamically if not already loaded
-        if (!window.blogScriptLoaded) {
-            console.log('Loading blogs.js script...');
-            const script = document.createElement('script');
-            script.src = 'scripts/blogs.js';
-            script.onload = function() {
-                console.log('Blogs.js script loaded successfully');
-                window.blogScriptLoaded = true;
-                // Initialize blogs after script loads
-                if (typeof initializeBlogs === 'function') {
-                    console.log('Calling initializeBlogs...');
-                    initializeBlogs();
-                } else {
-                    console.error('initializeBlogs function not found');
-                }
-            };
-            script.onerror = function() {
-                console.error('Failed to load blogs.js');
-                // Show error message in blogs grid
-                const blogsGrid = document.getElementById('blogs-grid');
-                if (blogsGrid) {
-                    blogsGrid.innerHTML = `
-                        <div class="blog-error">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <h3>Error Loading Blogs</h3>
-                            <p>Failed to load blog content. Please refresh the page.</p>
-                        </div>
-                    `;
-                }
-            };
-            document.head.appendChild(script);
-        } else {
-            // If script is already loaded, initialize blogs
-            if (typeof initializeBlogs === 'function') {
-                initializeBlogs();
-            }
-        }
         
-        // Fallback: if blogs don't load within 5 seconds, show error
-        setTimeout(() => {
+        // Initialize blogs directly since blogs.js is now included
+        if (typeof initializeBlogs === 'function') {
+            console.log('Calling initializeBlogs...');
+            initializeBlogs();
+        } else {
+            console.error('initializeBlogs function not found');
+            // Show error message in blogs grid
             const blogsGrid = document.getElementById('blogs-grid');
-            if (blogsGrid && blogsGrid.querySelector('.blog-loading')) {
-                console.warn('Blogs failed to load, showing error message');
+            if (blogsGrid) {
                 blogsGrid.innerHTML = `
                     <div class="blog-error">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Connection Error</h3>
-                        <p>Unable to load blogs. Please check your internet connection and refresh the page.</p>
+                        <h3>Error Loading Blogs</h3>
+                        <p>Failed to load blog content. Please refresh the page.</p>
                     </div>
                 `;
             }
-        }, 5000);
+        }
     }
     
     // Ensure hero section is visible
@@ -466,19 +434,28 @@ function initializeTradingDashboard() {
     const stockPrice = document.querySelector('.stock-price');
     const stockChange = document.querySelector('.stock-change');
     const stockSymbol = document.querySelector('.stock-symbol');
+    const chartLine = document.querySelector('.chart-line');
+    const chartAreaPath = document.querySelector('.chart-area-path');
+    const notification = document.getElementById('trade-result-notification');
+    const notificationTitle = document.getElementById('notification-title');
+    const notificationMessage = document.getElementById('notification-message');
+    const notificationIcon = document.querySelector('.notification-icon i');
     
     const stocks = [
-        { symbol: 'AAPL', basePrice: 185.42, volatility: 0.02 },
-        { symbol: 'TSLA', basePrice: 245.67, volatility: 0.03 },
-        { symbol: 'GOOGL', basePrice: 142.89, volatility: 0.015 },
-        { symbol: 'MSFT', basePrice: 378.45, volatility: 0.018 },
-        { symbol: 'AMZN', basePrice: 156.78, volatility: 0.025 }
+        { symbol: 'RELIANCE', basePrice: 2450.75, volatility: 0.02 },
+        { symbol: 'TCS', basePrice: 3850.20, volatility: 0.015 },
+        { symbol: 'HDFC BANK', basePrice: 1650.45, volatility: 0.025 },
+        { symbol: 'INFOSYS', basePrice: 1450.30, volatility: 0.018 },
+        { symbol: 'ICICI BANK', basePrice: 950.80, volatility: 0.022 }
     ];
 
     let currentStockIndex = 0;
     let currentPrice = stocks[0].basePrice;
+    let isAnimating = false;
 
     function updateStockPrice() {
+        if (isAnimating) return;
+        
         const stock = stocks[currentStockIndex];
         const change = (Math.random() - 0.5) * stock.volatility * currentPrice;
         currentPrice = Math.max(0, currentPrice + change);
@@ -486,31 +463,68 @@ function initializeTradingDashboard() {
         const changePercent = (change / (currentPrice - change)) * 100;
         const isPositive = change >= 0;
         
-        stockPrice.textContent = `$${currentPrice.toFixed(2)}`;
-        stockChange.textContent = `${isPositive ? '+' : ''}${change.toFixed(2)} (${isPositive ? '+' : ''}${changePercent.toFixed(2)}%)`;
-        stockChange.className = `stock-change ${isPositive ? 'positive' : 'negative'}`;
-        stockSymbol.textContent = stock.symbol;
+        if (stockPrice) {
+            stockPrice.textContent = `₹${currentPrice.toFixed(2)}`;
+        }
+        
+        if (stockChange) {
+            stockChange.textContent = `${isPositive ? '+' : ''}${change.toFixed(2)} (${isPositive ? '+' : ''}${changePercent.toFixed(2)}%)`;
+            stockChange.className = `stock-change ${isPositive ? 'positive' : 'negative'}`;
+        }
+        
+        if (stockSymbol) {
+            stockSymbol.textContent = stock.symbol;
+        }
+        
+        // Update chart animation
+        if (chartLine && chartAreaPath) {
+            chartLine.className = `chart-line ${isPositive ? 'profit' : 'loss'}`;
+            chartAreaPath.className = `chart-area-path ${isPositive ? 'profit' : 'loss'}`;
+        }
     }
 
-    // Update price every 3 seconds
-    setInterval(updateStockPrice, 3000);
-
-    // Change stock every 10 seconds
-    setInterval(() => {
-        currentStockIndex = (currentStockIndex + 1) % stocks.length;
-        currentPrice = stocks[currentStockIndex].basePrice;
-        updateStockPrice();
-    }, 10000);
+    function showTradeResult(action) {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        const profit = Math.random() > 0.5;
+        const amount = (Math.random() * 100 + 10).toFixed(2);
+        
+        // Update notification content
+        if (notificationTitle) {
+            notificationTitle.textContent = profit ? 'Trade Successful!' : 'Trade Failed!';
+        }
+        
+        if (notificationMessage) {
+            notificationMessage.textContent = profit ? `You made a profit of ₹${amount}` : `You lost ₹${amount}`;
+        }
+        
+        // Update notification icon
+        if (notificationIcon) {
+            notificationIcon.className = profit ? 'fas fa-check-circle' : 'fas fa-times-circle';
+            notificationIcon.parentElement.className = `notification-icon ${profit ? 'success' : 'loss'}`;
+        }
+        
+        // Show notification
+        if (notification) {
+            notification.style.display = 'block';
+        }
+        
+        // Hide notification after 3 seconds
+        setTimeout(() => {
+            if (notification) {
+                notification.style.display = 'none';
+            }
+            isAnimating = false;
+        }, 3000);
+    }
 
     // Trading buttons interaction
     const tradeButtons = document.querySelectorAll('.trade-btn');
     tradeButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const action = this.classList.contains('buy') ? 'Buy' : 'Sell';
-            const symbol = stockSymbol.textContent;
-            const price = stockPrice.textContent;
-            
-            showNotification(`${action} order placed for ${symbol} at ${price}`, 'success');
+            const action = this.classList.contains('buy') ? 'buy' : 'sell';
+            showTradeResult(action);
             
             // Add click animation
             gsap.to(this, {
@@ -521,6 +535,16 @@ function initializeTradingDashboard() {
             });
         });
     });
+
+    // Update price every 3 seconds
+    setInterval(updateStockPrice, 3000);
+
+    // Change stock every 10 seconds
+    setInterval(() => {
+        currentStockIndex = (currentStockIndex + 1) % stocks.length;
+        currentPrice = stocks[currentStockIndex].basePrice;
+        updateStockPrice();
+    }, 10000);
 
     // Market indicators animation
     const indicators = document.querySelectorAll('.indicator-value');
@@ -1178,4 +1202,285 @@ function initMarketIndicators() {
             }, 150);
         });
     });
+} 
+
+// Testimonials Horizontal Scroll with GSAP ScrollTrigger
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialsSection = document.querySelector('.testimonials');
+    const testimonialsTrack = document.getElementById('testimonials-track');
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    
+    if (!testimonialsSection || !testimonialsTrack) return;
+    
+    // Initialize horizontal scroll
+    function initHorizontalScroll() {
+        // Calculate the total width needed for horizontal scroll
+        const cardWidth = 400; // Width of each card
+        const cardGap = 30; // Gap between cards
+        const totalCards = testimonialCards.length;
+        const totalWidth = (cardWidth + cardGap) * totalCards - cardGap;
+        
+        // Set the track width
+        testimonialsTrack.style.width = totalWidth + 'px';
+        
+        // Create ScrollTrigger for horizontal scroll
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Pin the section and animate horizontal scroll
+        ScrollTrigger.create({
+            trigger: testimonialsSection,
+            start: "top top",
+            end: `+=${totalWidth - window.innerWidth}`,
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            animation: gsap.to(testimonialsTrack, {
+                x: -(totalWidth - window.innerWidth),
+                ease: "none"
+            })
+        });
+        
+        // Animate cards into view as they enter
+        testimonialCards.forEach((card, index) => {
+            // Initial state
+            gsap.set(card, {
+                opacity: 0,
+                y: 50,
+                scale: 0.9
+            });
+            
+            // Create ScrollTrigger for each card
+            ScrollTrigger.create({
+                trigger: card,
+                start: "left 80%",
+                end: "left 20%",
+                onEnter: () => animateCardIn(card),
+                onLeave: () => animateCardOut(card),
+                onEnterBack: () => animateCardIn(card),
+                onLeaveBack: () => animateCardOut(card)
+            });
+        });
+    }
+    
+    function animateCardIn(card) {
+        gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+        
+        // Animate card elements with stagger
+        const avatar = card.querySelector('.testimonial-avatar');
+        const name = card.querySelector('.testimonial-name');
+        const caption = card.querySelector('.testimonial-caption');
+        const review = card.querySelector('.testimonial-review');
+        const rating = card.querySelector('.testimonial-rating');
+        
+        gsap.fromTo([avatar, name, caption, review, rating], 
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out",
+                delay: 0.2
+            }
+        );
+        
+        // Animate rating stars
+        const stars = rating.querySelectorAll('i');
+        gsap.fromTo(stars,
+            { scale: 0, rotation: -180 },
+            {
+                scale: 1,
+                rotation: 0,
+                duration: 0.4,
+                stagger: 0.1,
+                ease: "back.out(1.7)",
+                delay: 0.6
+            }
+        );
+        
+        // Animate avatar with bounce
+        gsap.fromTo(avatar,
+            { scale: 0.8, rotation: -10 },
+            {
+                scale: 1,
+                rotation: 0,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+                delay: 0.1
+            }
+        );
+    }
+    
+    function animateCardOut(card) {
+        gsap.to(card, {
+            opacity: 0.7,
+            scale: 0.95,
+            duration: 0.5,
+            ease: "power2.out"
+        });
+    }
+    
+    // Add hover effects for testimonial cards
+    testimonialCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                y: -10,
+                scale: 1.02,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            
+            const avatar = card.querySelector('.testimonial-avatar');
+            gsap.to(avatar, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                y: 0,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            
+            const avatar = card.querySelector('.testimonial-avatar');
+            gsap.to(avatar, {
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+    
+    // Initialize horizontal scroll
+    initHorizontalScroll();
+    
+    // Refresh ScrollTrigger on window resize
+    window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+    });
+}); 
+
+// Initialize Services Slider
+function initializeServicesSlider() {
+    const sliderContainer = document.querySelector('.services-slider-container');
+    const sliderTrack = document.querySelector('.services-slider-track');
+    
+    if (!sliderContainer || !sliderTrack) return;
+    
+    // Clone cards for seamless loop
+    const cards = sliderTrack.querySelectorAll('.service-card');
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 32; // 2rem gap
+    
+    // Calculate total width for smooth loop
+    const totalWidth = cards.length * (cardWidth + gap);
+    sliderTrack.style.width = `${totalWidth * 2}px`;
+    
+    // Add event listeners for pause on hover
+    sliderContainer.addEventListener('mouseenter', () => {
+        sliderTrack.style.animationPlayState = 'paused';
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+        sliderTrack.style.animationPlayState = 'running';
+    });
+    
+    // Add touch support for mobile
+    let isDragging = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    
+    sliderContainer.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX - sliderContainer.offsetLeft;
+        scrollLeft = sliderTrack.scrollLeft;
+        sliderTrack.style.animationPlayState = 'paused';
+    });
+    
+    sliderContainer.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - sliderContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        sliderTrack.scrollLeft = scrollLeft - walk;
+    });
+    
+    sliderContainer.addEventListener('touchend', () => {
+        isDragging = false;
+        setTimeout(() => {
+            sliderTrack.style.animationPlayState = 'running';
+        }, 1000);
+    });
+    
+    // Add intersection observer for performance
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            } else {
+                entry.target.style.animationPlayState = 'paused';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    observer.observe(sliderContainer);
+    
+    // Add smooth scroll to explore button
+    const exploreBtn = document.querySelector('.explore-btn');
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSection = document.querySelector('#subscription');
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+    
+    // Add card hover effects
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Add GSAP animations for cards
+    gsap.fromTo(cards, 
+        { 
+            opacity: 0, 
+            y: 50,
+            scale: 0.9
+        },
+        {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: sliderContainer,
+                start: "top 80%",
+                end: "bottom 20%",
+                toggleActions: "play none none reverse"
+            }
+        }
+    );
 } 

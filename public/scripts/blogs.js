@@ -12,8 +12,15 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+let db;
+try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    console.log('Firebase initialized successfully');
+} catch (error) {
+    console.error('Firebase initialization error:', error);
+    // Continue without Firebase for now
+}
 
 // Global variables
 let allBlogs = [];
@@ -23,10 +30,7 @@ const blogsPerPage = 9;
 
 // Initialize blog functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize if not already initialized by main.js
-    if (!window.blogScriptLoaded) {
-        initializeBlogs();
-    }
+    // Initialize search, filters, and modal
     initializeSearch();
     initializeFilters();
     initializeModal();
@@ -58,6 +62,14 @@ async function initializeBlogs() {
 // Load blogs from Firestore
 async function loadBlogs() {
     console.log('Loading blogs from Firestore...');
+    
+    // Check if Firebase is available
+    if (!db) {
+        console.log('Firebase not available, using sample data');
+        loadSampleBlogs();
+        return;
+    }
+    
     try {
         // Test Firebase connection first
         console.log('Testing Firebase connection...');
@@ -82,35 +94,50 @@ async function loadBlogs() {
         if (allBlogs.length > 0) {
             console.log('Sample blog:', allBlogs[0]);
         } else {
-            console.log('No blogs found in Firestore, using sample data for testing');
-            // Add sample blogs for testing if no blogs are found
-            allBlogs = [
-                {
-                    id: 'sample-1',
-                    title: 'Market Analysis: Nifty 50 Outlook',
-                    content: '<p>This is a sample blog post about market analysis. The Nifty 50 index has shown strong momentum in recent sessions...</p>',
-                    updatedAt: new Date()
-                },
-                {
-                    id: 'sample-2',
-                    title: 'Trading Strategies for Beginners',
-                    content: '<p>Learn the fundamentals of trading with our comprehensive guide for beginners...</p>',
-                    updatedAt: new Date(Date.now() - 86400000) // 1 day ago
-                },
-                {
-                    id: 'sample-3',
-                    title: 'Investment Tips for 2024',
-                    content: '<p>Discover the top investment strategies and tips for the year 2024...</p>',
-                    updatedAt: new Date(Date.now() - 172800000) // 2 days ago
-                }
-            ];
-            filteredBlogs = [...allBlogs];
-            console.log('Sample blogs created:', allBlogs.length);
+            console.log('No blogs found in Firestore, using sample data');
+            loadSampleBlogs();
         }
     } catch (error) {
-        console.error('Error loading blogs:', error);
-        throw error;
+        console.error('Error loading blogs from Firestore:', error);
+        console.log('Using sample data due to Firebase error');
+        loadSampleBlogs();
     }
+}
+
+// Load sample blogs for testing
+function loadSampleBlogs() {
+    allBlogs = [
+        {
+            id: 'sample-1',
+            title: 'Market Analysis: Nifty 50 Outlook',
+            excerpt: 'Comprehensive analysis of Nifty 50 index performance and future outlook based on technical and fundamental factors.',
+            content: '<p>This is a sample blog post about market analysis. The Nifty 50 index has shown strong momentum in recent sessions, with key support levels holding firm. Our analysis suggests continued bullish momentum in the short term.</p><p>Key factors driving the market include strong corporate earnings, positive global cues, and supportive domestic policies. Technical indicators point to sustained upward movement with key resistance levels to watch.</p>',
+            category: 'Market Analysis',
+            readTime: 5,
+            updatedAt: new Date()
+        },
+        {
+            id: 'sample-2',
+            title: 'Trading Strategies for Beginners',
+            excerpt: 'Essential trading strategies and risk management techniques for new traders entering the market.',
+            content: '<p>Learn the fundamentals of trading with our comprehensive guide for beginners. This post covers essential concepts like risk management, position sizing, and basic technical analysis.</p><p>We discuss proven strategies that have worked for successful traders and common pitfalls to avoid. Perfect for anyone starting their trading journey.</p>',
+            category: 'Trading Education',
+            readTime: 8,
+            updatedAt: new Date(Date.now() - 86400000) // 1 day ago
+        },
+        {
+            id: 'sample-3',
+            title: 'Investment Portfolio Diversification',
+            excerpt: 'How to build a well-diversified investment portfolio across different asset classes and sectors.',
+            content: '<p>Diversification is key to long-term investment success. This post explains how to create a balanced portfolio that can weather market volatility while generating consistent returns.</p><p>We cover asset allocation strategies, sector diversification, and how to rebalance your portfolio effectively.</p>',
+            category: 'Investment Strategy',
+            readTime: 6,
+            updatedAt: new Date(Date.now() - 172800000) // 2 days ago
+        }
+    ];
+    
+    filteredBlogs = [...allBlogs];
+    console.log('Sample blogs loaded:', allBlogs.length);
 }
 
 // Display latest 3 blogs on homepage
@@ -170,8 +197,8 @@ function displayAllBlogs() {
 // Create blog card HTML
 function createBlogCard(blog) {
     const date = formatDate(blog.updatedAt);
-    const excerpt = extractExcerpt(blog.content);
-    const readTime = calculateReadTime(blog.content);
+    const excerpt = blog.excerpt || extractExcerpt(blog.content);
+    const readTime = blog.readTime || calculateReadTime(blog.content);
     
     return `
         <div class="blog-card" data-blog-id="${blog.id}">
