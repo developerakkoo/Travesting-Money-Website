@@ -1204,70 +1204,144 @@ function initMarketIndicators() {
     });
 } 
 
-// Testimonials Horizontal Scroll with GSAP ScrollTrigger
+// Testimonials Horizontal Scroll with Arrow Controls
 document.addEventListener('DOMContentLoaded', function() {
     const testimonialsSection = document.querySelector('.testimonials');
     const testimonialsTrack = document.getElementById('testimonials-track');
     const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const prevBtn = document.getElementById('testimonial-prev');
+    const nextBtn = document.getElementById('testimonial-next');
     
-    if (!testimonialsSection || !testimonialsTrack) return;
+    if (!testimonialsSection || !testimonialsTrack || !prevBtn || !nextBtn) return;
     
-    // Initialize horizontal scroll
-    function initHorizontalScroll() {
-        // Calculate the total width needed for horizontal scroll
-        const cardWidth = 400; // Width of each card
-        const cardGap = 30; // Gap between cards
-        const totalCards = testimonialCards.length;
-        const totalWidth = (cardWidth + cardGap) * totalCards - cardGap;
+    let currentIndex = 0;
+    let isAnimating = false;
+    let autoScrollInterval;
+    
+    // Initialize testimonials slider
+    function initTestimonialsSlider() {
+        // Set initial state
+        updateNavigationButtons();
+        startAutoScroll();
         
-        // Set the track width
-        testimonialsTrack.style.width = totalWidth + 'px';
+        // Add event listeners
+        prevBtn.addEventListener('click', () => scrollToPrevious());
+        nextBtn.addEventListener('click', () => scrollToNext());
         
-        // Create ScrollTrigger for horizontal scroll
-        gsap.registerPlugin(ScrollTrigger);
+        // Pause auto-scroll on hover
+        testimonialsSection.addEventListener('mouseenter', pauseAutoScroll);
+        testimonialsSection.addEventListener('mouseleave', resumeAutoScroll);
         
-        // Pin the section and animate horizontal scroll
-        ScrollTrigger.create({
-            trigger: testimonialsSection,
-            start: "top top",
-            end: `+=${totalWidth - window.innerWidth}`,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1,
-            animation: gsap.to(testimonialsTrack, {
-                x: -(totalWidth - window.innerWidth),
-                ease: "none"
-            })
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let currentX = 0;
+        
+        testimonialsSection.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            pauseAutoScroll();
         });
         
-        // Animate cards into view as they enter
-        testimonialCards.forEach((card, index) => {
-            // Initial state
-            gsap.set(card, {
-                opacity: 0,
-                y: 50,
-                scale: 0.9
-            });
-            
-            // Create ScrollTrigger for each card
-            ScrollTrigger.create({
-                trigger: card,
-                start: "left 80%",
-                end: "left 20%",
-                onEnter: () => animateCardIn(card),
-                onLeave: () => animateCardOut(card),
-                onEnterBack: () => animateCardIn(card),
-                onLeaveBack: () => animateCardOut(card)
-            });
+        testimonialsSection.addEventListener('touchmove', (e) => {
+            currentX = e.touches[0].clientX;
+        });
+        
+        testimonialsSection.addEventListener('touchend', () => {
+            const diff = startX - currentX;
+            if (Math.abs(diff) > 50) { // Minimum swipe distance
+                if (diff > 0) {
+                    scrollToNext();
+                } else {
+                    scrollToPrevious();
+                }
+            }
+            resumeAutoScroll();
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                scrollToPrevious();
+            } else if (e.key === 'ArrowRight') {
+                scrollToNext();
+            }
         });
     }
     
+    function scrollToNext() {
+        if (isAnimating) return;
+        
+        if (currentIndex < testimonialCards.length - 1) {
+            currentIndex++;
+        } else {
+            // Loop back to first card for continuous scrolling
+            currentIndex = 0;
+        }
+        scrollToCard(currentIndex);
+    }
+    
+    function scrollToPrevious() {
+        if (isAnimating) return;
+        
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            // Loop to last card for continuous scrolling
+            currentIndex = testimonialCards.length - 1;
+        }
+        scrollToCard(currentIndex);
+    }
+    
+    function scrollToCard(index) {
+        if (isAnimating) return;
+        
+        isAnimating = true;
+        
+        // Calculate scroll position to center the card
+        const containerWidth = testimonialsSection.offsetWidth;
+        const cardWidth = testimonialCards[0].offsetWidth;
+        const cardGap = 30; // Gap between cards
+        const containerPadding = 80; // Left and right padding for arrows
+        
+        // Calculate the center position
+        const centerPosition = (containerWidth - containerPadding) / 2;
+        const cardCenter = cardWidth / 2;
+        
+        // Calculate scroll position to center the current card
+        const scrollPosition = -(index * (cardWidth + cardGap)) + centerPosition - cardCenter;
+        
+        // Smooth scroll animation
+        gsap.to(testimonialsTrack, {
+            x: scrollPosition,
+            duration: 0.8,
+            ease: "power2.out",
+            onComplete: () => {
+                isAnimating = false;
+                updateNavigationButtons();
+            }
+        });
+        
+        // Animate the current card
+        animateCardIn(testimonialCards[index]);
+        
+        // Update dots if they exist
+        updateDots(index);
+    }
+    
     function animateCardIn(card) {
+        // Reset all cards
+        testimonialCards.forEach(c => {
+            c.classList.remove('active');
+            gsap.set(c, { opacity: 0.7, scale: 0.95 });
+        });
+        
+        // Set current card as active
+        card.classList.add('active');
+        
+        // Animate current card
         gsap.to(card, {
             opacity: 1,
-            y: 0,
             scale: 1,
-            duration: 0.8,
+            duration: 0.6,
             ease: "power2.out"
         });
         
@@ -1283,7 +1357,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.5,
                 stagger: 0.1,
                 ease: "power2.out",
                 delay: 0.2
@@ -1317,13 +1391,37 @@ document.addEventListener('DOMContentLoaded', function() {
         );
     }
     
-    function animateCardOut(card) {
-        gsap.to(card, {
-            opacity: 0.7,
-            scale: 0.95,
-            duration: 0.5,
-            ease: "power2.out"
-        });
+    function updateNavigationButtons() {
+        // Remove disabled state for continuous scrolling
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+    }
+    
+    function updateDots(index) {
+        const dots = document.querySelectorAll('.dot');
+        if (dots.length > 0) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+    }
+    
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (!isAnimating) {
+                scrollToNext();
+            }
+        }, 5000); // Auto-scroll every 5 seconds
+    }
+    
+    function pauseAutoScroll() {
+        if (autoScrollInterval) {
+            clearInterval(autoScrollInterval);
+        }
+    }
+    
+    function resumeAutoScroll() {
+        startAutoScroll();
     }
     
     // Add hover effects for testimonial cards
@@ -1361,12 +1459,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initialize horizontal scroll
-    initHorizontalScroll();
+    // Initialize testimonials slider
+    initTestimonialsSlider();
     
-    // Refresh ScrollTrigger on window resize
+    // Initial positioning to center the first card
+    setTimeout(() => {
+        scrollToCard(currentIndex);
+    }, 100);
+    
+    // Handle window resize
     window.addEventListener('resize', () => {
-        ScrollTrigger.refresh();
+        // Recalculate scroll position after resize
+        setTimeout(() => {
+            scrollToCard(currentIndex);
+        }, 100);
     });
 }); 
 
