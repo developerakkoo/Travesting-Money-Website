@@ -1,25 +1,36 @@
-// Firebase Configuration
-const firebaseConfig = {
-    // Add your Firebase config here
-    // You'll need to replace this with your actual Firebase project configuration
-    apiKey: "AIzaSyBZlk1Mxmgc6dtQKvA0KUWZDJO8E3wr8ZM",
-  authDomain: "travesting-3a43e.firebaseapp.com",
-  projectId: "travesting-3a43e",
-  storageBucket: "travesting-3a43e.firebasestorage.app",
-  messagingSenderId: "635256034750",
-  appId: "1:635256034750:web:81111c90efca12d207d5ef",
-  measurementId: "G-K7TX5Q00FM"
-};
-
-// Initialize Firebase
+// Firebase Configuration - Using centralized config
 let db;
-try {
-    firebase.initializeApp(firebaseConfig);
-    db = firebase.firestore();
-    console.log('Firebase initialized successfully');
-} catch (error) {
-    console.error('Firebase initialization error:', error);
-    // Continue without Firebase for now
+
+// Initialize Firebase using centralized configuration
+function initializeFirebaseForBlogs() {
+    if (typeof firebase !== 'undefined') {
+        try {
+            // Check if Firebase is already initialized
+            if (!firebase.apps.length) {
+                firebase.initializeApp(window.firebaseConfig || {
+                    apiKey: "AIzaSyCV8_CE8XH_OXyIhtUrejvvH4BRFmfpf9Y",
+                    authDomain: "travestingmoney-5d9f9.firebaseapp.com",
+                    projectId: "travestingmoney-5d9f9",
+                    storageBucket: "travestingmoney-5d9f9.firebasestorage.app",
+                    messagingSenderId: "896872312270",
+                    appId: "1:896872312270:web:7bcc11ffb16ada4c334f9f",
+                    measurementId: "G-S4T735QWJD"
+                });
+                console.log('Firebase initialized successfully for blogs');
+            } else {
+                console.log('Firebase already initialized');
+            }
+            
+            // Initialize Firestore
+            db = firebase.firestore();
+            console.log('Firestore initialized successfully');
+        } catch (error) {
+            console.error('Firebase initialization error:', error);
+            // Continue without Firebase for now
+        }
+    } else {
+        console.warn('Firebase SDK not loaded');
+    }
 }
 
 // Global variables
@@ -34,7 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Blogs grid element:', document.querySelector('#blogs-grid'));
     console.log('All blogs grid element:', document.querySelector('#all-blogs-grid'));
     
-    // Initialize blogs first
+    // Initialize Firebase first
+    initializeFirebaseForBlogs();
+    
+    // Initialize blogs
     initializeBlogs();
     
     // Initialize search, filters, and modal

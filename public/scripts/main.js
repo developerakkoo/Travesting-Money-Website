@@ -358,9 +358,10 @@ function initializeNavigation() {
         navToggle.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking on a link
+    // Close mobile menu when clicking on any navigation link
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
+            // Always close mobile menu when any nav link is clicked
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         });

@@ -2525,6 +2525,15 @@ section {
     }
 }
 
+/* Override all mobile navigation menu backgrounds */
+@media (max-width: 768px) {
+    .nav-menu {
+        background: transparent !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-container {
         height: 100px;
@@ -2540,11 +2549,11 @@ section {
         left: -100%;
         top: 100px;
         flex-direction: column;
-        background: #fff;
+        background: transparent;
         width: 100%;
         text-align: center;
         transition: left 0.3s;
-        box-shadow: var(--shadow-lg);
+        box-shadow: none;
         padding: var(--spacing-2xl) 0;
         z-index: 1050;
         max-height: calc(100vh - 100px);
@@ -2585,6 +2594,8 @@ section {
         top: 90px;
         max-height: calc(100vh - 90px);
         padding: var(--spacing-xl) 0;
+        background: transparent;
+        box-shadow: none;
     }
     
     .nav-link {
@@ -6537,7 +6548,7 @@ section {
         justify-content: center;
         text-align: center;
         max-width: 100%;
-        margin: 0;
+        margin-top: 20px;
     }
     
     /* Mobile Hero Content */
@@ -9176,7 +9187,7 @@ section {
 /* Services Slider Section */
 .services-slider-section {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
-    padding: var(--spacing-4xl) 0;
+    /* padding: var(--spacing-4xl) 0; */
     position: relative;
     overflow: hidden;
 }
