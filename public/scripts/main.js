@@ -18,29 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize market indicators
     initMarketIndicators();
     
-    // Initialize blogs if on homepage
+    // Initialize blogs if on homepage (blogs.js handles this now)
     console.log('Checking for blogs grid...');
     if (document.querySelector('#blogs-grid')) {
-        console.log('Blogs grid found, initializing blogs...');
-        
-        // Initialize blogs directly since blogs.js is now included
-        if (typeof initializeBlogs === 'function') {
-            console.log('Calling initializeBlogs...');
-            initializeBlogs();
-        } else {
-            console.error('initializeBlogs function not found');
-            // Show error message in blogs grid
-            const blogsGrid = document.getElementById('blogs-grid');
-            if (blogsGrid) {
-                blogsGrid.innerHTML = `
-                    <div class="blog-error">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <h3>Error Loading Blogs</h3>
-                        <p>Failed to load blog content. Please refresh the page.</p>
-                    </div>
-                `;
-            }
-        }
+        console.log('Blogs grid found, blogs.js will handle initialization');
     }
     
     // Ensure hero section is visible
@@ -673,38 +654,58 @@ function initializeScrollEffects() {
 // Initialize market time
 function initializeMarketTime() {
     const timeDisplay = document.getElementById('market-time');
+    const chartTimeDisplay = document.getElementById('chart-time');
     
     function updateMarketTime() {
         const now = new Date();
-        const options = {
-            timeZone: 'America/New_York',
-            hour12: true,
-            hour: '2-digit',
-            minute: '2-digit'
-        };
         
-        const marketTime = now.toLocaleTimeString('en-US', options);
-        timeDisplay.textContent = marketTime + ' EST';
+        // Update market time (EST)
+        if (timeDisplay) {
+            const options = {
+                timeZone: 'America/New_York',
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            
+            const marketTime = now.toLocaleTimeString('en-US', options);
+            timeDisplay.textContent = marketTime + ' EST';
+            
+            // Check if market is open (9:30 AM - 4:00 PM EST, Monday-Friday)
+            const marketOpen = now.getDay() >= 1 && now.getDay() <= 5; // Monday to Friday
+            const marketHour = now.getHours();
+            const marketMinute = now.getMinutes();
+            
+            const isOpen = marketOpen && 
+                          ((marketHour === 9 && marketMinute >= 30) || 
+                           (marketHour > 9 && marketHour < 16) ||
+                           (marketHour === 16 && marketMinute === 0));
+            
+            const statusIndicator = document.querySelector('.status-indicator');
+            const statusText = document.querySelector('.market-status span');
+            
+            if (statusIndicator && statusText) {
+                if (isOpen) {
+                    statusIndicator.className = 'status-indicator live';
+                    statusText.textContent = 'Market Open';
+                } else {
+                    statusIndicator.className = 'status-indicator';
+                    statusText.textContent = 'Market Closed';
+                }
+            }
+        }
         
-        // Check if market is open (9:30 AM - 4:00 PM EST, Monday-Friday)
-        const marketOpen = now.getDay() >= 1 && now.getDay() <= 5; // Monday to Friday
-        const marketHour = now.getHours();
-        const marketMinute = now.getMinutes();
-        
-        const isOpen = marketOpen && 
-                      ((marketHour === 9 && marketMinute >= 30) || 
-                       (marketHour > 9 && marketHour < 16) ||
-                       (marketHour === 16 && marketMinute === 0));
-        
-        const statusIndicator = document.querySelector('.status-indicator');
-        const statusText = document.querySelector('.market-status span');
-        
-        if (isOpen) {
-            statusIndicator.className = 'status-indicator live';
-            statusText.textContent = 'Market Open';
-        } else {
-            statusIndicator.className = 'status-indicator';
-            statusText.textContent = 'Market Closed';
+        // Update chart time (IST)
+        if (chartTimeDisplay) {
+            const istOptions = {
+                timeZone: 'Asia/Kolkata',
+                hour12: true,
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            
+            const istTime = now.toLocaleTimeString('en-US', istOptions);
+            chartTimeDisplay.textContent = istTime + ' IST';
         }
     }
     

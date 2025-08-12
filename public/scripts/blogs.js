@@ -30,15 +30,36 @@ const blogsPerPage = 9;
 
 // Initialize blog functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Blogs.js DOMContentLoaded event fired');
+    console.log('Blogs grid element:', document.querySelector('#blogs-grid'));
+    console.log('All blogs grid element:', document.querySelector('#all-blogs-grid'));
+    
+    // Initialize blogs first
+    initializeBlogs();
+    
     // Initialize search, filters, and modal
     initializeSearch();
     initializeFilters();
     initializeModal();
 });
 
+// Also try to initialize blogs when the window loads (fallback)
+window.addEventListener('load', function() {
+    console.log('Window load event fired');
+    // Check if blogs were already initialized
+    if (allBlogs.length === 0) {
+        console.log('Blogs not initialized yet, trying again...');
+        initializeBlogs();
+    }
+});
+
 // Initialize blogs
 async function initializeBlogs() {
     console.log('Initializing blogs...');
+    console.log('Current page URL:', window.location.href);
+    console.log('Blogs grid element:', document.querySelector('#blogs-grid'));
+    console.log('All blogs grid element:', document.querySelector('#all-blogs-grid'));
+    
     try {
         await loadBlogs();
         
@@ -49,9 +70,13 @@ async function initializeBlogs() {
         console.log('Homepage:', isHomepage, 'Blogs page:', isBlogsPage);
         
         if (isHomepage) {
+            console.log('Calling displayLatestBlogs...');
             displayLatestBlogs();
         } else if (isBlogsPage) {
+            console.log('Calling displayAllBlogs...');
             displayAllBlogs();
+        } else {
+            console.log('Neither homepage nor blogs page detected');
         }
     } catch (error) {
         console.error('Error initializing blogs:', error);
@@ -109,8 +134,8 @@ function loadSampleBlogs() {
     allBlogs = [
         {
             id: 'sample-1',
-            title: 'Market Analysis: Nifty 50 Outlook',
-            excerpt: 'Comprehensive analysis of Nifty 50 index performance and future outlook based on technical and fundamental factors.',
+            title: 'Nifty 50 Technical Analysis: Bullish Momentum Continues',
+            excerpt: 'Comprehensive analysis of Nifty 50 index performance with key support levels, resistance zones, and future outlook based on technical indicators and market structure.',
             content: '<p>This is a sample blog post about market analysis. The Nifty 50 index has shown strong momentum in recent sessions, with key support levels holding firm. Our analysis suggests continued bullish momentum in the short term.</p><p>Key factors driving the market include strong corporate earnings, positive global cues, and supportive domestic policies. Technical indicators point to sustained upward movement with key resistance levels to watch.</p>',
             category: 'Market Analysis',
             readTime: 5,
@@ -118,8 +143,8 @@ function loadSampleBlogs() {
         },
         {
             id: 'sample-2',
-            title: 'Trading Strategies for Beginners',
-            excerpt: 'Essential trading strategies and risk management techniques for new traders entering the market.',
+            title: 'Mastering Risk Management: Essential Trading Principles',
+            excerpt: 'Learn the fundamental principles of risk management that every successful trader must understand, including position sizing, stop-loss strategies, and portfolio protection.',
             content: '<p>Learn the fundamentals of trading with our comprehensive guide for beginners. This post covers essential concepts like risk management, position sizing, and basic technical analysis.</p><p>We discuss proven strategies that have worked for successful traders and common pitfalls to avoid. Perfect for anyone starting their trading journey.</p>',
             category: 'Trading Education',
             readTime: 8,
@@ -127,8 +152,8 @@ function loadSampleBlogs() {
         },
         {
             id: 'sample-3',
-            title: 'Investment Portfolio Diversification',
-            excerpt: 'How to build a well-diversified investment portfolio across different asset classes and sectors.',
+            title: 'Sector Rotation Strategy: Maximizing Returns in Volatile Markets',
+            excerpt: 'Discover how strategic sector rotation can enhance portfolio performance and reduce risk during different market cycles and economic conditions.',
             content: '<p>Diversification is key to long-term investment success. This post explains how to create a balanced portfolio that can weather market volatility while generating consistent returns.</p><p>We cover asset allocation strategies, sector diversification, and how to rebalance your portfolio effectively.</p>',
             category: 'Investment Strategy',
             readTime: 6,
@@ -144,13 +169,19 @@ function loadSampleBlogs() {
 function displayLatestBlogs() {
     console.log('Displaying latest blogs...');
     const blogsGrid = document.getElementById('blogs-grid');
+    console.log('Blogs grid element:', blogsGrid);
+    
     if (!blogsGrid) {
         console.error('Blogs grid not found');
         return;
     }
     
+    console.log('All blogs array:', allBlogs);
+    console.log('All blogs length:', allBlogs.length);
+    
     const latestBlogs = allBlogs.slice(0, 3);
     console.log('Latest blogs:', latestBlogs.length);
+    console.log('Latest blogs data:', latestBlogs);
     
     if (latestBlogs.length === 0) {
         console.log('No blogs available, showing empty state');
@@ -165,7 +196,9 @@ function displayLatestBlogs() {
     }
     
     console.log('Rendering blog cards...');
-    blogsGrid.innerHTML = latestBlogs.map(blog => createBlogCard(blog)).join('');
+    const blogCardsHTML = latestBlogs.map(blog => createBlogCard(blog)).join('');
+    console.log('Blog cards HTML:', blogCardsHTML);
+    blogsGrid.innerHTML = blogCardsHTML;
     console.log('Blog cards rendered');
 }
 
@@ -199,31 +232,88 @@ function createBlogCard(blog) {
     const date = formatDate(blog.updatedAt);
     const excerpt = blog.excerpt || extractExcerpt(blog.content);
     const readTime = blog.readTime || calculateReadTime(blog.content);
+    const category = blog.category || 'Market Insights';
+    
+    // Generate a professional stock market related image based on category
+    const imageUrl = getBlogImage(blog.category, blog.title);
     
     return `
         <div class="blog-card" data-blog-id="${blog.id}">
-            <div class="blog-header">
-                <h3 class="blog-title">${blog.title}</h3>
-            </div>
-            <div class="blog-excerpt">${excerpt}</div>
-            <div class="blog-meta">
-                <div class="blog-date">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>${date}</span>
-                </div>
-                <div class="blog-read-time">
-                    <i class="fas fa-clock"></i>
-                    <span>${readTime} min read</span>
+            <div class="blog-image-container">
+                <img src="${imageUrl}" alt="${blog.title}" class="blog-image" loading="lazy">
+                <div class="blog-category-badge">${category}</div>
+                <div class="blog-overlay">
+                    <div class="blog-overlay-content">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Read Analysis</span>
+                    </div>
                 </div>
             </div>
-            <div class="blog-cta">
-                <button class="blog-btn" onclick="openBlogModal('${blog.id}')">
-                    Read More
-                    <i class="fas fa-arrow-right"></i>
-                </button>
+            
+            <div class="blog-content">
+                <div class="blog-header">
+                    <h3 class="blog-title">${blog.title}</h3>
+                </div>
+                
+                <div class="blog-excerpt">${excerpt}</div>
+                
+                <div class="blog-meta">
+                    <div class="blog-meta-left">
+                        <div class="blog-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${date}</span>
+                        </div>
+                        <div class="blog-read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>${readTime} min read</span>
+                        </div>
+                    </div>
+                    <div class="blog-meta-right">
+                        <div class="blog-author">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Travesting Money</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-cta">
+                    <button class="blog-btn" onclick="openBlogModal('${blog.id}')">
+                        <span>Read Full Analysis</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
     `;
+}
+
+// Get appropriate image for blog based on category and title
+function getBlogImage(category, title) {
+    const baseImages = {
+        'Market Analysis': [
+            'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        ],
+        'Trading Education': [
+            'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        ],
+        'Investment Strategy': [
+            'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+        ]
+    };
+    
+    // Get images for the category, or use default if category not found
+    const categoryImages = baseImages[category] || baseImages['Market Analysis'];
+    
+    // Use title hash to consistently select image for same blog
+    const titleHash = title.split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+    }, 0);
+    
+    return categoryImages[Math.abs(titleHash) % categoryImages.length];
 }
 
 // Extract excerpt from HTML content
