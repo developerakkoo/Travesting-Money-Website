@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMarketTime();
     initializeResponsiveFeatures();
     initializeServicesSlider();
+    initializeQA();
     
     // Initialize stock trading
     initStockTrading();
@@ -365,18 +366,23 @@ function initializeNavigation() {
         });
     });
 
-    // Smooth scrolling for navigation links
+    // Smooth scrolling for navigation links (only internal anchors)
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            const href = this.getAttribute('href');
             
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            // Only prevent default and smooth scroll for internal anchor links
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(href);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             }
+            // External links (like finhub.html) will navigate normally
         });
     });
 
@@ -711,6 +717,33 @@ function initializeMarketTime() {
     
     updateMarketTime();
     setInterval(updateMarketTime, 1000);
+}
+
+// Initialize Q&A functionality
+function initializeQA() {
+    const qaItems = document.querySelectorAll('.qa-item');
+    
+    qaItems.forEach(item => {
+        const question = item.querySelector('.qa-question');
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other items
+            qaItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            if (isActive) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        });
+    });
 }
 
 // Animate counters

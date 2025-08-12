@@ -3,6 +3,7 @@
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initializePricingToggle();
+    initializeFinHubPricingToggles();
     initializeFAQ();
     initializePaymentModal();
     initializeAnimations();
@@ -47,6 +48,99 @@ function initializePricingToggle() {
             }
         });
     });
+}
+
+// Initialize FinHub pricing toggles
+function initializeFinHubPricingToggles() {
+    // Wealth Builder Portfolio Toggle
+    const wealthToggle = document.getElementById('wealth-toggle');
+    if (wealthToggle) {
+        wealthToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('wealth-half-year');
+            const annualOption = document.getElementById('wealth-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '15000');
+                    button.textContent = 'Get Portfolio Access - ₹15,000';
+                }
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '20000');
+                    button.textContent = 'Get Portfolio Access - ₹20,000';
+                }
+            }
+        });
+    }
+    
+    // Swing Trade Ideas Toggle
+    const swingToggle = document.getElementById('swing-toggle');
+    if (swingToggle) {
+        swingToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('swing-half-year');
+            const annualOption = document.getElementById('swing-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="swing-trade"]');
+                if (button) {
+                    button.setAttribute('data-price', '9999');
+                    button.textContent = 'Start Swing Trading - ₹9,999';
+                }
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="swing-trade"]');
+                if (button) {
+                    button.setAttribute('data-price', '5999');
+                    button.textContent = 'Start Swing Trading - ₹5,999';
+                }
+            }
+        });
+    }
+    
+    // Travesting Exclusive Toggle
+    const exclusiveToggle = document.getElementById('exclusive-toggle');
+    if (exclusiveToggle) {
+        exclusiveToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('exclusive-half-year');
+            const annualOption = document.getElementById('exclusive-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="travesting-exclusive"]');
+                if (button) {
+                    button.setAttribute('data-price', '12999');
+                    button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹12,999';
+                }
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price
+                const button = document.querySelector('[data-plan="travesting-exclusive"]');
+                if (button) {
+                    button.setAttribute('data-price', '7999');
+                    button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹7,999';
+                }
+            }
+        });
+    }
 }
 
 // Initialize FAQ accordion
