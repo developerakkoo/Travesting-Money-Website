@@ -178,6 +178,7 @@
     background: var(--gradient-primary);
     color: white;
     padding: var(--spacing-3xl) 0;
+    margin-top: 80px; /* Add top margin to prevent navbar overlap */
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -192,11 +193,13 @@
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
     opacity: 0.3;
+    z-index: 0; /* Ensure proper layering */
 }
 
 .blog-header-content {
     position: relative;
     z-index: 1;
+    padding-top: 20px; /* Additional top padding for content */
 }
 
 .blog-header h1 {
@@ -472,6 +475,11 @@
 }
 
 @media (max-width: 768px) {
+    .blog-header {
+        margin-top: 60px; /* Reduce top margin on mobile */
+        padding: var(--spacing-2xl) 0;
+    }
+    
     .blog-header h1 {
         font-size: var(--font-size-3xl);
     }
@@ -509,6 +517,11 @@
 }
 
 @media (max-width: 480px) {
+    .blog-header {
+        margin-top: 50px; /* Further reduce top margin on small screens */
+        padding: var(--spacing-xl) 0;
+    }
+    
     .blog-header h1 {
         font-size: var(--font-size-2xl);
     }

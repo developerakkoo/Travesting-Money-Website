@@ -1548,28 +1548,80 @@ function initializeServicesSlider() {
         sliderTrack.style.animationPlayState = 'running';
     });
     
-    // Add touch support for mobile
+    // Enhanced touch support for mobile
     let isDragging = false;
     let startX = 0;
     let scrollLeft = 0;
+    let isMobile = window.innerWidth <= 768;
+    
+    // Update mobile detection on resize
+    window.addEventListener('resize', () => {
+        isMobile = window.innerWidth <= 768;
+    });
     
     sliderContainer.addEventListener('touchstart', (e) => {
+        if (!isMobile) return;
         isDragging = true;
         startX = e.touches[0].pageX - sliderContainer.offsetLeft;
         scrollLeft = sliderTrack.scrollLeft;
         sliderTrack.style.animationPlayState = 'paused';
+        sliderContainer.style.cursor = 'grabbing';
     });
     
     sliderContainer.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
+        if (!isDragging || !isMobile) return;
         e.preventDefault();
         const x = e.touches[0].pageX - sliderContainer.offsetLeft;
-        const walk = (x - startX) * 2;
+        const walk = (x - startX) * 1.5; // Reduced sensitivity for better control
         sliderTrack.scrollLeft = scrollLeft - walk;
     });
     
     sliderContainer.addEventListener('touchend', () => {
+        if (!isMobile) return;
         isDragging = false;
+        sliderContainer.style.cursor = 'grab';
+        // Resume animation after a short delay
+        setTimeout(() => {
+            sliderTrack.style.animationPlayState = 'running';
+        }, 2000);
+    });
+    
+    // Add mouse drag support for desktop
+    let isMouseDragging = false;
+    let mouseStartX = 0;
+    let mouseScrollLeft = 0;
+    
+    sliderContainer.addEventListener('mousedown', (e) => {
+        if (isMobile) return;
+        isMouseDragging = true;
+        mouseStartX = e.pageX - sliderContainer.offsetLeft;
+        mouseScrollLeft = sliderTrack.scrollLeft;
+        sliderContainer.style.cursor = 'grabbing';
+        sliderTrack.style.animationPlayState = 'paused';
+        e.preventDefault();
+    });
+    
+    sliderContainer.addEventListener('mousemove', (e) => {
+        if (!isMouseDragging || isMobile) return;
+        e.preventDefault();
+        const x = e.pageX - sliderContainer.offsetLeft;
+        const walk = (x - mouseStartX) * 1.5;
+        sliderTrack.scrollLeft = mouseScrollLeft - walk;
+    });
+    
+    sliderContainer.addEventListener('mouseup', () => {
+        if (isMobile) return;
+        isMouseDragging = false;
+        sliderContainer.style.cursor = 'grab';
+        setTimeout(() => {
+            sliderTrack.style.animationPlayState = 'running';
+        }, 1000);
+    });
+    
+    sliderContainer.addEventListener('mouseleave', () => {
+        if (isMobile) return;
+        isMouseDragging = false;
+        sliderContainer.style.cursor = 'grab';
         setTimeout(() => {
             sliderTrack.style.animationPlayState = 'running';
         }, 1000);
