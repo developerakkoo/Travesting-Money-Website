@@ -145,6 +145,14 @@
 .services-overview {
     padding: 100px 0;
     background: #f8fafc;
+    width: 100%;
+}
+
+.services-overview .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .services-overview .services-grid {
@@ -152,6 +160,9 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
     margin-top: 60px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .services-overview .service-card {
@@ -163,6 +174,10 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .services-overview .service-card::before {
@@ -289,14 +304,73 @@
     transform: translateX(4px);
 }
 
+/* Ensure services section is fully responsive */
+@media (max-width: 768px) {
+    .services-overview .container {
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .services-overview .services-grid {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 40px 0 0 0;
+    }
+    
+    .services-overview .service-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-overview .container {
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .services-overview .services-grid {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        gap: 15px;
+    }
+    
+    .services-overview .service-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+    }
+}
+
 /* Mentorship Section */
 .mentorship {
     padding: 100px 0;
     background: white;
+    width: 100%;
+}
+
+.mentorship .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .mentorship .mentorship-grid {
     margin-top: 60px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
 }
 
 .mentor-card {
@@ -306,6 +380,13 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(30, 64, 175, 0.1);
     transition: all 0.4s ease;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
 }
 
 .mentor-card:hover {
@@ -321,7 +402,12 @@
 .mentor-image {
     position: relative;
     height: 400px;
+    width: 350px !important;
+    min-width: 350px !important;
+    max-width: 350px !important;
     overflow: hidden;
+    flex-shrink: 0 !important;
+    box-sizing: border-box;
 }
 
 .mentor-image img {
@@ -363,6 +449,14 @@
 
 .mentor-content {
     padding: 40px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
 }
 
 .mentor-content h3 {
@@ -391,6 +485,9 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 16px;
     margin-bottom: 32px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
 }
 
 .credential {
@@ -414,6 +511,9 @@
     padding: 24px;
     background: rgba(30, 64, 175, 0.05);
     border-radius: 16px;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 .mentor-stats .stat {
@@ -742,44 +842,553 @@
     to { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .finhub-hero .hero-title {
-        font-size: 3rem;
+/* Comprehensive Responsive Design for FinHub Page */
+
+/* Large Desktop (1200px and above) */
+@media (min-width: 1200px) {
+    .finhub-hero .container {
+        max-width: 1400px;
+        padding: 0 60px;
     }
     
-    .services-overview .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-    }
-    
-    .mentor-stats {
+    .services-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        gap: 60px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .service-card {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .mentorship-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: none;
     }
     
     .roadmap-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+    }
+    
+    .qa-container {
+        max-width: 1000px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
     }
 }
 
+/* Desktop (1025px - 1199px) */
+@media (min-width: 1025px) and (max-width: 1199px) {
+    .finhub-hero .container {
+        max-width: 1200px;
+        padding: 0 40px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .service-card {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .mentorship-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+    
+    .roadmap-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .qa-container {
+        max-width: 900px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+}
+
+/* Tablet Landscape (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .finhub-hero .container {
+        max-width: 900px;
+        padding: 0 30px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+        max-width: 700px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .service-card {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .service-card.premium {
+        grid-column: span 2;
+    }
+    
+    .mentorship-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .mentor-image {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    
+    .roadmap-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .qa-container {
+        max-width: 800px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+/* Tablet Portrait (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .finhub-hero .container {
+        max-width: 600px;
+        padding: 0 20px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .service-card {
+        width: 100%;
+        max-width: none;
+        padding: 30px;
+    }
+    
+    .service-card.premium {
+        grid-column: span 1;
+    }
+    
+    .mentorship-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        width: 100%;
+        padding: 0;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+    
+    .mentor-image {
+        margin-bottom: 25px;
+        width: 100%;
+    }
+    
+    .mentor-stats {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .roadmap-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .roadmap-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .roadmap-icon {
+        margin-bottom: 15px;
+    }
+    
+    .roadmap-features {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .qa-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .qa-item {
+        margin-bottom: 15px;
+    }
+    
+    .qa-question {
+        padding: 20px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 20px;
+    }
+    
+    .contact-form {
+        max-width: 100%;
+    }
+    
+    .contact-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* Mobile Large (321px - 480px) */
+@media (min-width: 321px) and (max-width: 480px) {
+    .finhub-hero .container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 1.75rem;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        max-width: 100%;
+    }
+    
+    .hero-badge {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+        width: 100%;
+    }
+    
+    .service-card {
+        width: 100%;
+        max-width: none;
+        padding: 25px;
+        margin: 0;
+    }
+    
+    .service-features {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .feature-tag {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
+    
+    .mentorship-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+        width: 100%;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .mentor-image {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    .mentor-badges {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .mentor-stats {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    .roadmap-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+    
+    .roadmap-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+    
+    .roadmap-icon {
+        margin-bottom: 15px;
+    }
+    
+    .roadmap-features {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    
+    .qa-container {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .qa-item {
+        margin-bottom: 15px;
+    }
+    
+    .qa-question {
+        padding: 20px;
+    }
+    
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 0 15px;
+    }
+    
+    .contact-form {
+        max-width: 100%;
+    }
+    
+    .contact-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Mobile Small (320px and below) */
+@media (max-width: 320px) {
+    .finhub-hero .container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .hero-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .hero-description {
+        font-size: 0.8rem;
+        max-width: 100%;
+    }
+    
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+    
+    .services-grid,
+    .mentorship-grid,
+    .roadmap-container,
+    .qa-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+        width: 100%;
+    }
+    
+    .service-card,
+    .mentor-card,
+    .roadmap-item {
+        width: 100%;
+        max-width: none;
+        padding: 20px;
+        margin: 0;
+    }
+    
+    .mentor-image {
+        width: 100%;
+    }
+    
+    .mentor-stats {
+        width: 100%;
+    }
+    
+    .section-title {
+        font-size: 1.25rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+}
+
+/* General responsive improvements */
+@media (max-width: 768px) {
+    .gradient-orb {
+        display: none;
+    }
+    
+    .floating-particles {
+        display: none;
+    }
+    
+    .hero-background {
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+    }
+}
+
+/* Touch-friendly improvements for mobile */
+@media (max-width: 768px) {
+    .btn,
+    .service-link,
+    .qa-question {
+        min-height: 44px;
+        padding: 12px 20px;
+    }
+    
+
+    
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        min-height: 44px;
+        padding: 12px;
+    }
+}
+
+/* Improved spacing for mobile */
 @media (max-width: 768px) {
     .finhub-hero {
-        padding: 100px 0 60px;
-    }
-    
-    .finhub-hero .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .finhub-hero .hero-description {
-        font-size: 1.1rem;
-    }
-    
-    .finhub-hero .hero-cta {
-        flex-direction: column;
-        align-items: center;
+        padding: 80px 0;
     }
     
     .services-overview,
@@ -790,70 +1399,176 @@
         padding: 60px 0;
     }
     
-    .services-overview .services-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        margin-bottom: 15px;
+    }
+}
+
+/* Navigation styles removed - now using standard navigation from main.css */ 
+
+/* Ensure mentorship section is fully responsive */
+@media (max-width: 768px) {
+    .mentorship .container {
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .mentorship .mentorship-grid {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 40px 0 0 0;
+    }
+    
+    .mentor-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 25px;
+    }
+    
+    .mentor-image {
+        width: 100%;
+        height: 300px;
     }
     
     .mentor-content {
-        padding: 30px;
+        width: 100%;
+        padding: 25px;
     }
     
     .mentor-stats {
+        width: 100%;
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .roadmap-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .contact-form {
-        padding: 30px;
+        gap: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .finhub-hero .hero-title {
-        font-size: 2rem;
+    .mentorship .container {
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
     }
     
-    .finhub-hero .hero-badge {
-        padding: 10px 20px;
-        font-size: 0.8rem;
+    .mentorship .mentorship-grid {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        gap: 15px;
     }
     
-    .services-overview .service-card {
-        padding: 30px 20px;
+    .mentor-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .mentor-image {
+        width: 100%;
+        height: 250px;
     }
     
     .mentor-content {
+        width: 100%;
         padding: 20px;
     }
     
-    .roadmap-item {
-        padding: 30px 20px;
-    }
-    
-    .qa-question {
+    .mentor-stats {
+        width: 100%;
+        grid-template-columns: 1fr;
+        gap: 15px;
         padding: 20px;
     }
     
-    .qa-answer {
-        padding: 0 20px;
-    }
-    
-    .qa-item.active .qa-answer {
-        padding: 0 20px 20px;
-    }
-    
-    .contact-form {
-        padding: 20px;
+    .mentor-credentials {
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
 } 
+
+/* Additional mentor card width fixes for all screen sizes */
+@media (min-width: 769px) {
+    .mentorship .mentorship-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    
+    .mentor-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        box-sizing: border-box !important;
+    }
+    
+    .mentor-image {
+        width: 350px !important;
+        min-width: 350px !important;
+        max-width: 350px !important;
+        flex-shrink: 0 !important;
+        height: 400px !important;
+    }
+    
+    .mentor-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+    
+    .mentor-credentials {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .mentor-stats {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Mobile responsive - switch to vertical layout */
+@media (max-width: 768px) {
+    .mentor-card {
+        flex-direction: column !important;
+        display: flex !important;
+    }
+    
+    .mentor-image {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        height: 300px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .mentor-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+        justify-content: flex-start !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .mentor-image {
+        height: 250px !important;
+    }
+}
+
+/* Mentor card responsive styles maintained */ 
