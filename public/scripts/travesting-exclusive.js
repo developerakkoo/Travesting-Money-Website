@@ -10,6 +10,7 @@ function initializeTravestingExclusive() {
     initializeScrollEffects();
     initializeFormHandling();
     initializePremiumEffects();
+    initializePricingToggles();
 }
 
 // Initialize Q&A functionality
@@ -475,4 +476,47 @@ function initializePremiumButtonEffects() {
 // Initialize premium button effects
 document.addEventListener('DOMContentLoaded', function() {
     initializePremiumButtonEffects();
-}); 
+});
+
+// Initialize pricing toggles
+function initializePricingToggles() {
+    // Travesting Exclusive Toggle
+    const exclusiveToggle = document.getElementById('exclusive-toggle');
+    if (exclusiveToggle) {
+        exclusiveToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('exclusive-half-year');
+            const annualOption = document.getElementById('exclusive-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="exclusive-annual"]');
+                if (button) {
+                    button.setAttribute('data-price', '12999');
+                    button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹12,999';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹7,999';
+                if (annualPrice) annualPrice.textContent = '₹12,999';
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="exclusive-half-year"]');
+                if (button) {
+                    button.setAttribute('data-price', '7999');
+                    button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹7,999';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹7,999';
+                if (annualPrice) annualPrice.textContent = '₹12,999';
+            }
+        });
+    }
+} 

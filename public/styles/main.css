@@ -2556,6 +2556,20 @@ section {
         gap: 0;
     }
     
+    /* Handle both nav-menu structures (ul and div) */
+    .nav-menu > ul {
+        width: 100%;
+        margin: 0;
+        padding: 60px 0 0 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+        gap: 0;
+    }
+    
     .nav-menu li {
         width: 100%;
         margin: 0;

@@ -9,6 +9,7 @@ function initializeWealthBuilder() {
     initializeAnimations();
     initializeScrollEffects();
     initializeFormHandling();
+    initializePricingToggles();
 }
 
 // Initialize Q&A functionality
@@ -380,4 +381,87 @@ function initializePricingButtons() {
 // Initialize pricing buttons
 document.addEventListener('DOMContentLoaded', function() {
     initializePricingButtons();
-}); 
+});
+
+// Initialize pricing toggles
+function initializePricingToggles() {
+    // Portfolio Access Toggle
+    const portfolioToggle = document.getElementById('portfolio-toggle');
+    if (portfolioToggle) {
+        portfolioToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('portfolio-half-year');
+            const annualOption = document.getElementById('portfolio-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '15000');
+                    button.textContent = 'Get Portfolio Access - ₹15,000';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹20,000';
+                if (annualPrice) annualPrice.textContent = '₹15,000';
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '20000');
+                    button.textContent = 'Get Portfolio Access - ₹20,000';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹20,000';
+                if (annualPrice) annualPrice.textContent = '₹15,000';
+            }
+        });
+    }
+    
+    // Rebalancing Toggle
+    const rebalancingToggle = document.getElementById('rebalancing-toggle');
+    if (rebalancingToggle) {
+        rebalancingToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('rebalancing-half-year');
+            const annualOption = document.getElementById('rebalancing-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '3999');
+                    button.textContent = 'Get Rebalancing - ₹3,999';
+                }
+                // Update pricing display
+                const priceDisplay = document.querySelector('.rebalancing-price-display');
+                if (priceDisplay) {
+                    priceDisplay.textContent = '₹3,999 (33% off)';
+                }
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="wealth-builder"]');
+                if (button) {
+                    button.setAttribute('data-price', '2499');
+                    button.textContent = 'Get Rebalancing - ₹2,499';
+                }
+                // Update pricing display
+                const priceDisplay = document.querySelector('.rebalancing-price-display');
+                if (priceDisplay) {
+                    priceDisplay.textContent = '₹2,499';
+                }
+            }
+        });
+    }
+} 

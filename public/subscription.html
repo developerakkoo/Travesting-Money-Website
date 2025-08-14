@@ -46,19 +46,24 @@
                 </a>
             </div>
             
-            <ul class="nav-menu">
-                <li><a href="./index.html" class="nav-link">Home</a></li>
-                <!-- <li><a href="index.html#courses" class="nav-link">Research</a></li> -->
-                <!-- <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li> -->
-                <li><a href="index.html#blogs" class="nav-link">Blogs</a></li>
-                <li><a href="subscription.html" class="nav-link active">Subscription</a></li>
-                <!-- <li><a href="index.html#about" class="nav-link">About</a></li> -->
-                <!-- <li><a href="index.html#vision-mission" class="nav-link">Vision & Mission</a></li> -->
-                <li><a href="finhub.html" class="nav-link">FinHub</a></li>
-                <li><a href="index.html#resources" class="nav-link">Resources</a></li>
-                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-                <!-- <li><a href="#login" class="nav-btn">Login</a></li> -->
-            </ul>
+            <div class="nav-menu">
+                <div class="nav-close" id="nav-close">
+                    <span class="sr-only">Close Menu</span>
+                </div>
+                <ul>
+                    <li><a href="./index.html" class="nav-link">Home</a></li>
+                    <!-- <li><a href="index.html#courses" class="nav-link">Research</a></li> -->
+                    <!-- <li><a href="index.html#testimonials" class="nav-link">Testimonials</a></li> -->
+                    <li><a href="index.html#blogs" class="nav-link">Blogs</a></li>
+                    <li><a href="subscription.html" class="nav-link active">Subscription</a></li>
+                    <!-- <li><a href="index.html#about" class="nav-link">About</a></li> -->
+                    <!-- <li><a href="index.html#vision-mission" class="nav-link">Vision & Mission</a></li> -->
+                    <li><a href="finhub.html" class="nav-link">FinHub</a></li>
+                    <li><a href="index.html#resources" class="nav-link">Resources</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    <!-- <li><a href="#login" class="nav-btn">Login</a></li> -->
+                </ul>
+            </div>
             
             <div class="nav-toggle">
                 <span class="bar"></span>
@@ -126,42 +131,10 @@
                         <i class="fas fa-rocket"></i>
                         Get Started
                     </a>
-                    <a href="#features" class="btn btn-outline">
-                        <i class="fas fa-play"></i>
-                        Watch Demo
-                    </a>
+                   
                 </div>
                 
-                <div class="hero-stats animate-fade-in">
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-number">10K+</div>
-                        <div class="stat-label">Satisfied Clients</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Hours of Content</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div class="stat-number">4.8/5</div>
-                        <div class="stat-label">Avg Rating</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <div class="stat-number">SEBI</div>
-                        <div class="stat-label">Registered</div>
-                    </div>
-                </div>
+
             </div>
             
             <div class="hero-visual animate-slide-left">
@@ -305,6 +278,7 @@
                     <span class="slider"></span>
                 </label>
                 <span>Annual <span class="save-badge">Save 20%</span></span>
+                <button id="test-toggle" style="margin-left: 20px; padding: 5px 10px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer;">Test Toggle</button>
             </div>
             
             <div class="pricing-grid">
@@ -343,7 +317,7 @@
                         </div>
                     </div>
                     
-                    <button class="subscribe-btn" data-plan="basic" data-price="999">
+                    <button class="subscribe-btn" data-plan="basic" data-price="999" data-monthly-price="999" data-annual-price="799">
                         Subscribe Now
                     </button>
                 </div>
@@ -392,7 +366,7 @@
                         </div>
                     </div>
                     
-                    <button class="subscribe-btn" data-plan="pro" data-price="1999">
+                    <button class="subscribe-btn" data-plan="pro" data-price="1999" data-monthly-price="1999" data-annual-price="1599">
                         Subscribe Now
                     </button>
                 </div>
@@ -440,7 +414,7 @@
                         </div>
                     </div>
                     
-                    <button class="subscribe-btn" data-plan="premium" data-price="3999">
+                    <button class="subscribe-btn" data-plan="premium" data-price="3999" data-monthly-price="3999" data-annual-price="3199">
                         Subscribe Now
                     </button>
                 </div>

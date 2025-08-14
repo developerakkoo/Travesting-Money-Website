@@ -1,53 +1,119 @@
 // Subscription Page JavaScript
+console.log('=== SUBSCRIPTION.JS LOADED ===');
+
+// Simple test function
+function testFunction() {
+    console.log('Test function called successfully!');
+    return true;
+}
+
+// Make it globally available
+window.testFunction = testFunction;
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializePricingToggle();
-    initializeFinHubPricingToggles();
-    initializeFAQ();
-    initializePaymentModal();
-    initializeAnimations();
-    initializeStripe();
+    console.log('=== DOM CONTENT LOADED ===');
+    try {
+        testFunction();
+        console.log('=== TEST FUNCTION WORKED ===');
+        initializePricingToggle();
+        initializeFinHubPricingToggles();
+        initializeFAQ();
+        initializePaymentModal();
+        initializeAnimations();
+        initializeStripe();
+        console.log('=== ALL FUNCTIONS INITIALIZED ===');
+    } catch (error) {
+        console.error('=== ERROR DURING INITIALIZATION ===', error);
+    }
 });
+
+// Also try immediate execution
+console.log('=== IMMEDIATE EXECUTION ===');
+console.log('Document ready state:', document.readyState);
+console.log('Window loaded:', typeof window !== 'undefined');
 
 // Initialize pricing toggle
 function initializePricingToggle() {
+    console.log('Initializing pricing toggle...');
     const toggle = document.getElementById('billing-toggle');
     const amounts = document.querySelectorAll('.amount');
     const periods = document.querySelectorAll('.period');
     
-    if (!toggle) return;
+    console.log('Toggle element:', toggle);
+    console.log('Amount elements found:', amounts.length);
+    console.log('Period elements found:', periods.length);
+    
+    if (!toggle) {
+        console.error('Billing toggle not found!');
+        return;
+    }
+    
+    console.log('Adding event listener to toggle...');
     
     toggle.addEventListener('change', function() {
         const isAnnual = this.checked;
+        console.log('Toggle changed:', isAnnual ? 'Annual' : 'Monthly');
         
         amounts.forEach(amount => {
             const monthlyPrice = amount.getAttribute('data-monthly');
             const annualPrice = amount.getAttribute('data-annual');
             
+            console.log('Updating amount:', monthlyPrice, '->', annualPrice);
+            
             if (isAnnual) {
                 amount.textContent = annualPrice;
-                amount.closest('.plan-price').querySelector('.period').textContent = '/month';
+                const periodElement = amount.closest('.plan-price').querySelector('.period');
+                if (periodElement) {
+                    periodElement.textContent = '/month (billed annually)';
+                }
             } else {
                 amount.textContent = monthlyPrice;
-                amount.closest('.plan-price').querySelector('.period').textContent = '/month';
+                const periodElement = amount.closest('.plan-price').querySelector('.period');
+                if (periodElement) {
+                    periodElement.textContent = '/month';
+                }
             }
         });
         
-        // Update subscribe button prices
+        // Update subscribe button prices and text
         const subscribeButtons = document.querySelectorAll('.subscribe-btn');
         subscribeButtons.forEach(button => {
             const plan = button.getAttribute('data-plan');
-            const monthlyPrice = button.getAttribute('data-price');
-            const annualPrice = Math.floor(parseInt(monthlyPrice) * 0.8); // 20% discount
+            const monthlyPrice = button.getAttribute('data-monthly-price') || button.getAttribute('data-price');
+            const annualPrice = button.getAttribute('data-annual-price');
             
-            if (isAnnual) {
+            if (isAnnual && annualPrice) {
                 button.setAttribute('data-price', annualPrice);
-            } else {
+                button.textContent = `Subscribe - ₹${annualPrice}/month (billed annually)`;
+            } else if (monthlyPrice) {
                 button.setAttribute('data-price', monthlyPrice);
+                button.textContent = `Subscribe - ₹${monthlyPrice}/month`;
             }
         });
     });
+    
+    // Initialize with current state
+    console.log('Initial toggle state:', toggle.checked);
+    
+    // Trigger initial update
+    toggle.dispatchEvent(new Event('change'));
+    
+    // Add test button functionality
+    const testButton = document.getElementById('test-toggle');
+    if (testButton) {
+        testButton.addEventListener('click', function() {
+            console.log('Test button clicked!');
+            console.log('Current toggle state:', toggle.checked);
+            
+            // Toggle the checkbox manually
+            toggle.checked = !toggle.checked;
+            console.log('New toggle state:', toggle.checked);
+            
+            // Trigger the change event
+            toggle.dispatchEvent(new Event('change'));
+        });
+    }
 }
 
 // Initialize FinHub pricing toggles
@@ -55,29 +121,42 @@ function initializeFinHubPricingToggles() {
     // Wealth Builder Portfolio Toggle
     const wealthToggle = document.getElementById('wealth-toggle');
     if (wealthToggle) {
+        console.log('Found wealth toggle:', wealthToggle);
         wealthToggle.addEventListener('change', function() {
             const isAnnual = this.checked;
+            console.log('Wealth toggle changed:', isAnnual ? 'Annual' : 'Half Year');
+            
             const halfYearOption = document.getElementById('wealth-half-year');
             const annualOption = document.getElementById('wealth-annual');
             
             if (isAnnual) {
                 halfYearOption.classList.remove('active');
                 annualOption.classList.add('active');
-                // Update button price
+                // Update button price and text
                 const button = document.querySelector('[data-plan="wealth-builder"]');
                 if (button) {
                     button.setAttribute('data-price', '15000');
                     button.textContent = 'Get Portfolio Access - ₹15,000';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹20,000';
+                if (annualPrice) annualPrice.textContent = '₹15,000';
             } else {
                 halfYearOption.classList.add('active');
                 annualOption.classList.remove('active');
-                // Update button price
+                // Update button price and text
                 const button = document.querySelector('[data-plan="wealth-builder"]');
                 if (button) {
                     button.setAttribute('data-price', '20000');
                     button.textContent = 'Get Portfolio Access - ₹20,000';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹20,000';
+                if (annualPrice) annualPrice.textContent = '₹15,000';
             }
         });
     }
@@ -85,29 +164,42 @@ function initializeFinHubPricingToggles() {
     // Swing Trade Ideas Toggle
     const swingToggle = document.getElementById('swing-toggle');
     if (swingToggle) {
+        console.log('Found swing toggle:', swingToggle);
         swingToggle.addEventListener('change', function() {
             const isAnnual = this.checked;
+            console.log('Swing toggle changed:', isAnnual ? 'Annual' : 'Half Year');
+            
             const halfYearOption = document.getElementById('swing-half-year');
             const annualOption = document.getElementById('swing-annual');
             
             if (isAnnual) {
                 halfYearOption.classList.remove('active');
                 annualOption.classList.add('active');
-                // Update button price
+                // Update button price and text
                 const button = document.querySelector('[data-plan="swing-trade"]');
                 if (button) {
                     button.setAttribute('data-price', '9999');
                     button.textContent = 'Start Swing Trading - ₹9,999';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹5,999';
+                if (annualPrice) annualPrice.textContent = '₹9,999';
             } else {
                 halfYearOption.classList.add('active');
                 annualOption.classList.remove('active');
-                // Update button price
+                // Update button price and text
                 const button = document.querySelector('[data-plan="swing-trade"]');
                 if (button) {
                     button.setAttribute('data-price', '5999');
                     button.textContent = 'Start Swing Trading - ₹5,999';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹5,999';
+                if (annualPrice) annualPrice.textContent = '₹9,999';
             }
         });
     }
@@ -115,29 +207,42 @@ function initializeFinHubPricingToggles() {
     // Travesting Exclusive Toggle
     const exclusiveToggle = document.getElementById('exclusive-toggle');
     if (exclusiveToggle) {
+        console.log('Found exclusive toggle:', exclusiveToggle);
         exclusiveToggle.addEventListener('change', function() {
             const isAnnual = this.checked;
+            console.log('Exclusive toggle changed:', isAnnual ? 'Annual' : 'Half Year');
+            
             const halfYearOption = document.getElementById('exclusive-half-year');
-            const annualOption = document.getElementById('exclusive-annual');
+            const exclusiveAnnualOption = document.getElementById('exclusive-annual');
             
             if (isAnnual) {
                 halfYearOption.classList.remove('active');
-                annualOption.classList.add('active');
-                // Update button price
+                exclusiveAnnualOption.classList.add('active');
+                // Update button price and text
                 const button = document.querySelector('[data-plan="travesting-exclusive"]');
                 if (button) {
                     button.setAttribute('data-price', '12999');
                     button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹12,999';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = exclusiveAnnualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹7,999';
+                if (annualPrice) annualPrice.textContent = '₹12,999';
             } else {
                 halfYearOption.classList.add('active');
-                annualOption.classList.remove('active');
-                // Update button price
+                exclusiveAnnualOption.classList.remove('active');
+                // Update button price and text
                 const button = document.querySelector('[data-plan="travesting-exclusive"]');
                 if (button) {
                     button.setAttribute('data-price', '7999');
                     button.innerHTML = '<i class="fas fa-crown"></i> Get Exclusive Access - ₹7,999';
                 }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = exclusiveAnnualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹7,999';
+                if (annualPrice) annualPrice.textContent = '₹12,999';
             }
         });
     }
@@ -563,25 +668,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Add performance optimization
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Optimize scroll events
-const optimizedScrollHandler = debounce(function() {
-    // Scroll-based animations and effects
-}, 16); // ~60fps
-
-window.addEventListener('scroll', optimizedScrollHandler);
+// Performance optimization functions are already available from main.js
 
 // Add accessibility improvements
 document.addEventListener('DOMContentLoaded', function() {

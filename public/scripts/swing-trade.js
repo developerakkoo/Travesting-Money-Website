@@ -9,6 +9,7 @@ function initializeSwingTrade() {
     initializeAnimations();
     initializeScrollEffects();
     initializeFormHandling();
+    initializePricingToggles();
 }
 
 // Initialize Q&A functionality
@@ -381,6 +382,49 @@ function initializePricingButtons() {
 document.addEventListener('DOMContentLoaded', function() {
     initializePricingButtons();
 });
+
+// Initialize pricing toggles
+function initializePricingToggles() {
+    // Swing Trade Toggle
+    const swingToggle = document.getElementById('swing-toggle');
+    if (swingToggle) {
+        swingToggle.addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const halfYearOption = document.getElementById('swing-half-year');
+            const annualOption = document.getElementById('swing-annual');
+            
+            if (isAnnual) {
+                halfYearOption.classList.remove('active');
+                annualOption.classList.add('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="swing-annual"]');
+                if (button) {
+                    button.setAttribute('data-price', '9999');
+                    button.textContent = 'Start Swing Trading - ₹9,999';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹5,999';
+                if (annualPrice) annualPrice.textContent = '₹9,999';
+            } else {
+                halfYearOption.classList.add('active');
+                annualOption.classList.remove('active');
+                // Update button price and text
+                const button = document.querySelector('[data-plan="swing-half-year"]');
+                if (button) {
+                    button.setAttribute('data-price', '5999');
+                    button.textContent = 'Start Swing Trading - ₹5,999';
+                }
+                // Update visible prices
+                const halfYearPrice = halfYearOption.querySelector('.price');
+                const annualPrice = annualOption.querySelector('.price');
+                if (halfYearPrice) halfYearPrice.textContent = '₹5,999';
+                if (annualPrice) annualPrice.textContent = '₹9,999';
+            }
+        });
+    }
+}
 
 // Add feature card hover effects
 function initializeFeatureCardEffects() {
