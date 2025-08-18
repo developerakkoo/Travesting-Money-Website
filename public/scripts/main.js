@@ -1267,6 +1267,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize testimonials slider
     function initTestimonialsSlider() {
+        // Add responsive layout class
+        updateResponsiveLayout();
+        
         // Set initial state
         updateNavigationButtons();
         startAutoScroll();
@@ -1312,6 +1315,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 scrollToNext();
             }
         });
+        
+        // Add window resize listener for responsive layout
+        window.addEventListener('resize', updateResponsiveLayout);
+        
+        // Initial responsive layout update
+        updateResponsiveLayout();
+    }
+    
+    // Update responsive layout for proper centering
+    function updateResponsiveLayout() {
+        const isDesktop = window.innerWidth >= 1200;
+        
+        if (isDesktop) {
+            // Desktop: Enable horizontal scrolling
+            testimonialsTrack.style.transform = '';
+            testimonialsTrack.style.justifyContent = 'flex-start';
+        } else {
+            // Mobile/Tablet: Center the track
+            testimonialsTrack.style.transform = 'none';
+            testimonialsTrack.style.justifyContent = 'center';
+            // Reset any scroll position
+            gsap.set(testimonialsTrack, { x: 0 });
+        }
     }
     
     function scrollToNext() {
@@ -1343,35 +1369,46 @@ document.addEventListener('DOMContentLoaded', function() {
         
         isAnimating = true;
         
-        // Calculate scroll position to center the card
-        const containerWidth = testimonialsSection.offsetWidth;
-        const cardWidth = testimonialCards[0].offsetWidth;
-        const cardGap = 30; // Gap between cards
-        const containerPadding = 80; // Left and right padding for arrows
+        // Check if we're on desktop (horizontal scrolling) or mobile/tablet (centered)
+        const isDesktop = window.innerWidth >= 1200;
         
-        // Calculate the center position
-        const centerPosition = (containerWidth - containerPadding) / 2;
-        const cardCenter = cardWidth / 2;
-        
-        // Calculate scroll position to center the current card
-        const scrollPosition = -(index * (cardWidth + cardGap)) + centerPosition - cardCenter;
-        
-        // Smooth scroll animation
-        gsap.to(testimonialsTrack, {
-            x: scrollPosition,
-            duration: 0.8,
-            ease: "power2.out",
-            onComplete: () => {
-                isAnimating = false;
-                updateNavigationButtons();
-            }
-        });
+        if (isDesktop) {
+            // Desktop: Calculate scroll position to center the card
+            const containerWidth = testimonialsSection.offsetWidth;
+            const cardWidth = testimonialCards[0].offsetWidth;
+            const cardGap = 30; // Gap between cards
+            const containerPadding = 80; // Left and right padding for arrows
+            
+            // Calculate the center position
+            const centerPosition = (containerWidth - containerPadding) / 2;
+            const cardCenter = cardWidth / 2;
+            
+            // Calculate scroll position to center the current card
+            const scrollPosition = -(index * (cardWidth + cardGap)) + centerPosition - cardCenter;
+            
+            // Smooth scroll animation
+            gsap.to(testimonialsTrack, {
+                x: scrollPosition,
+                duration: 0.8,
+                ease: "power2.out",
+                onComplete: () => {
+                    isAnimating = false;
+                    updateNavigationButtons();
+                }
+            });
+        } else {
+            // Mobile/Tablet: Just switch to the card without scrolling
+            currentIndex = index;
+            // Reset scroll position to center
+            gsap.set(testimonialsTrack, { x: 0 });
+        }
         
         // Animate the current card
         animateCardIn(testimonialCards[index]);
         
-        // Update dots if they exist
-        updateDots(index);
+        // Update navigation buttons
+        updateNavigationButtons();
+        isAnimating = false;
     }
     
     function animateCardIn(card) {

@@ -2455,6 +2455,28 @@ section {
     font-weight: 500;
 }
 
+.footer-bottom-links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-bottom-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: color 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--primary-color);
+    background: rgba(102, 126, 234, 0.1);
+}
+
 /* Responsive Design for Footer */
 @media (max-width: 1024px) {
     .footer-content {
@@ -2704,8 +2726,9 @@ section {
         margin-bottom: 2px;
     }
     
-    /* Ensure close button is always visible */
+    /* Hide close button by default */
     .nav-close {
+        display: none;
         position: fixed;
         top: 20px;
         right: 20px;
@@ -2714,7 +2737,6 @@ section {
         border-radius: 50%;
         width: 40px;
         height: 40px;
-        display: flex;
         align-items: center;
         justify-content: center;
         backdrop-filter: blur(10px);
@@ -2766,6 +2788,7 @@ section {
     }
     
     .nav-menu {
+        
         position: fixed;
         left: -100%;
         top: 0; /* Start from very top of viewport */
@@ -2798,7 +2821,7 @@ section {
         background: rgba(255, 255, 255, 0.9);
         border: 2px solid rgba(0, 0, 0, 0.1);
         border-radius: 50%;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         cursor: pointer;
@@ -2870,6 +2893,11 @@ section {
     .nav-menu.active {
         left: 0;
         animation: slideInFromLeft 0.3s ease-out;
+    }
+    
+    /* Show close button when mobile menu is active */
+    .nav-menu.active ~ .nav-close {
+        display: flex;
     }
     
     /* Mobile navigation overlay effect */
@@ -3130,6 +3158,7 @@ section {
     padding: var(--spacing-3xl) 0;
     margin: var(--spacing-3xl) 0;
     min-height: 100vh;
+    width: 100%;
 }
 
 .testimonials::before {
@@ -3146,6 +3175,317 @@ section {
 .testimonials .container {
     position: relative;
     z-index: 2;
+    max-width: 100%;
+    padding: 0;
+}
+
+.testimonials .section-header {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+/* Policy Pages Styles */
+.policy-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Fix logo sizing issues on policy pages */
+.policy-hero .logo,
+.policy-hero .logo-image {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.policy-hero .navbar-brand {
+    max-width: 200px;
+}
+
+.policy-hero .navbar-brand img {
+    max-width: 100%;
+    height: auto;
+}
+
+.policy-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.policy-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.policy-content {
+    padding: 60px 0;
+    background: #f8f9fa;
+    position: relative;
+    z-index: 1;
+}
+
+.policy-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.policy-section {
+    padding: 40px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.policy-section:last-child {
+    border-bottom: none;
+}
+
+.policy-section h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.policy-section h3 {
+    color: #34495e;
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem 0;
+    font-weight: 600;
+}
+
+.policy-section p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.policy-section ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.policy-section li {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.policy-section strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #667eea;
+    margin-top: 0.25rem;
+}
+
+.contact-item strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.contact-item a {
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #5a6fd8;
+}
+
+/* Responsive Design for Policy Pages */
+@media (max-width: 768px) {
+    .policy-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .policy-hero p {
+        font-size: 1.1rem;
+    }
+    
+    .policy-section {
+        padding: 30px 20px;
+    }
+    
+    .policy-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .policy-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .contact-item {
+        padding: 1rem;
+    }
+}
+
+/* Additional fixes for policy page logo and content visibility */
+.policy-hero .navbar {
+    position: relative;
+    z-index: 10;
+}
+
+.policy-hero .navbar-brand img {
+    max-width: 200px !important;
+    height: auto !important;
+    width: auto !important;
+}
+
+.policy-hero .hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+.policy-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Policy page navigation fixes */
+.policy-hero .header {
+    position: relative;
+    z-index: 20;
+}
+
+.policy-hero .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.policy-hero .navbar-nav .nav-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.policy-hero .navbar-nav .nav-link:hover {
+    color: var(--primary-color);
+}
+
+.policy-hero .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.policy-hero .navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.policy-hero .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.policy-hero .navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+/* Mobile navigation for policy pages */
+@media (max-width: 768px) {
+    .policy-hero .navbar-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 80px 2rem 2rem;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+    
+    .policy-hero .navbar-nav.active {
+        right: 0;
+    }
+    
+    .policy-hero .navbar-toggle {
+        display: flex;
+    }
+    
+    .policy-hero .navbar-actions {
+        display: none;
+    }
+}
+
+/* Ensure policy page content is visible */
+.policy-hero .hero-content h1,
+.policy-hero .hero-content p {
+    margin-top: 50px;
+    position: relative;
+    z-index: 5;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.policy-hero .hero-content h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.policy-hero .hero-content p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Ensure testimonials section is properly set up for centering */
+.testimonials {
+    text-align: center;
 }
 
 /* Testimonials Horizontal Scroll Styles */
@@ -3156,10 +3496,17 @@ section {
     /* Dynamic height based on card height */
     min-height: 600px;
     height: auto;
-    padding: 0 80px; /* Space for navigation arrows */
+    padding: 0 40px; /* Reduced padding for full width */
     /* Ensure proper centering */
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Ensure container is properly set up for centering */
+.testimonials-horizontal-container {
+    box-sizing: border-box;
 }
 
 .testimonials-track {
@@ -3170,11 +3517,53 @@ section {
     position: relative;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     /* Ensure proper centering */
-    margin-left: 0;
+    margin: 0 auto;
     /* Initial transform to center first card */
     transform: translateX(0);
     /* Ensure full card visibility */
     align-items: center;
+}
+
+/* Override any conflicting styles for mobile/tablet */
+@media (max-width: 1199px) {
+    .testimonials-track {
+        transform: none !important;
+        margin: 0 auto !important;
+        justify-content: center !important;
+    }
+}
+
+
+
+/* Force centering for testimonials on mobile/tablet */
+@media (max-width: 1199px) {
+    .testimonials-horizontal-container {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    .testimonials-track {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        transform: none !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .testimonial-card {
+        flex-shrink: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .testimonials-track {
+        justify-content: flex-start;
+        margin: 0;
+        width: max-content;
+    }
 }
 
 .testimonial-card {
@@ -3197,6 +3586,74 @@ section {
     margin: 20px 0;
     display: flex;
     flex-direction: column;
+}
+
+/* Responsive Testimonials Layout */
+@media (min-width: 1200px) {
+    /* Laptop/Desktop: Show 2 full cards + 2 half cards */
+    .testimonials-track {
+        gap: 20px;
+        transform: translateX(calc(50vw - 400px - 20px));
+    }
+    
+    .testimonial-card:nth-child(3),
+    .testimonial-card:nth-child(4) {
+        width: 200px;
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+    
+    .testimonial-card:nth-child(3) .testimonial-content,
+    .testimonial-card:nth-child(4) .testimonial-content {
+        display: none;
+    }
+    
+    .testimonial-card:nth-child(3) .testimonial-header,
+    .testimonial-card:nth-child(4) .testimonial-header {
+        transform: scale(0.8);
+        margin-bottom: 10px;
+    }
+    
+    /* Ensure proper spacing for full width */
+    .testimonials-horizontal-container {
+        padding: 0 60px;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 768px) {
+    /* Tablet: Adjust card size */
+    .testimonial-card {
+        width: 450px;
+        height: 550px;
+    }
+    
+    .testimonials-horizontal-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Mobile: Adjust card size */
+    .testimonial-card {
+        width: 320px;
+        height: 450px;
+        padding: 30px;
+    }
+    
+    .testimonials-horizontal-container {
+        padding: 0 20px;
+    }
+    
+    .testimonial-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .testimonial-avatar {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 .testimonial-card {
@@ -3378,6 +3835,39 @@ section {
     right: 20px;
 }
 
+/* Responsive Navigation Arrows */
+@media (max-width: 1199px) {
+    .testimonial-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+    
+    .testimonial-nav-prev {
+        left: 10px;
+    }
+    
+    .testimonial-nav-next {
+        right: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .testimonial-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .testimonial-nav-prev {
+        left: 5px;
+    }
+    
+    .testimonial-nav-next {
+        right: 5px;
+    }
+}
+
 .testimonial-nav-btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -3392,13 +3882,9 @@ section {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Navigation Dots */
+/* Navigation Dots - Hidden */
 .testimonial-dots {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 40px;
-    flex-wrap: wrap;
+    display: none !important;
 }
 
 .dot {
